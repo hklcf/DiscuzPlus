@@ -1,10 +1,10 @@
 <?php
 
 /*
-	Version: 1.0.0(BUG Fixed)
-	Author: HKLCF (admin@hklcf.com)
-	Copyright: HKLCF (www.hklcf.com)
-	Last Modified: 2004/09/22
+        Version: 1.0.0(BUG Fixed)
+        Author: HKLCF (admin@hklcf.com)
+        Copyright: HKLCF (www.hklcf.com)
+        Last Modified: 2004/09/22
 */
 
 require './include/common.php';
@@ -14,21 +14,21 @@ require $discuz_root.'./admin/global.php';
 $discuz_action = 161;
 
 if(@file_exists($discuz_root.'./install.php')) {
-	@unlink($discuz_root.'./install.php');
-	if(@file_exists($discuz_root.'./install.php')) {
-		discuz_exit('½Ğ¥Î FTP ³n¥ó§R°£ install.php¡I');
-	}
+        @unlink($discuz_root.'./install.php');
+        if(@file_exists($discuz_root.'./install.php')) {
+                discuz_exit('è«‹ç”¨ FTP è»Ÿä»¶åˆªé™¤ install.phpï¼');
+        }
 }
 
 if(@file_exists($discuz_root.'./updata.php')) {
-	@unlink($discuz_root.'./updata.php');
-	if(@file_exists($discuz_root.'./updata.php')) {
-		discuz_exit('½Ğ¥Î FTP ³n¥ó§R°£ updata.php¡I');
-	}
+        @unlink($discuz_root.'./updata.php');
+        if(@file_exists($discuz_root.'./updata.php')) {
+                discuz_exit('è«‹ç”¨ FTP è»Ÿä»¶åˆªé™¤ updata.phpï¼');
+        }
 }
 
 if(empty($action) || !empty($direct)) {
-	$action = empty($action) ? 'main' : $action;
+        $action = empty($action) ? 'main' : $action;
 ?>
 
 <html>
@@ -55,9 +55,9 @@ if(empty($action) || !empty($direct)) {
 <body leftmargin="0" topmargin="0">
 <table cellspacing="0" cellpadding="2" border="0" width="100%" height="100%" bgcolor="<?=ALTBG2?>">
 <tr valign="middle" class="smalltxt">
-<td width="33%"><a href="http://discuz.hklcf.com" target="_blank">Discuz! Plus <?=$version?> ¨t²Î³]¸m</a></td>
-<td width="33%" align="center"><a href="http://discuz.hklcf.com" target="_blank">Discuz! Plus ©x¤èºô¯¸</a></td>
-<td width="34%" align="right"><a href="index.php" target="_blank">½×¾Â­º­¶</a></TD>
+<td width="33%"><a href="http://discuz.hklcf.com" target="_blank">Discuz! Plus <?=$version?> ç³»çµ±è¨­ç½®</a></td>
+<td width="33%" align="center"><a href="http://discuz.hklcf.com" target="_blank">Discuz! Plus å®˜æ–¹ç¶²ç«™</a></td>
+<td width="34%" align="right"><a href="index.php" target="_blank">è«–å£‡é¦–é </a></TD>
 </tr>
 </table>
 </body></html>
@@ -80,70 +80,70 @@ if(empty($action) || !empty($direct)) {
 <tr><td bgcolor="<?=ALTBG1?>" align="center"><a href="admincp.php?action=menu&expand=1_2_3_4_5_6_7_8_9_10">[EXPAND]</a> &nbsp; <a href="admincp.php?action=menu&expand=0">[REDUCE]</a></td></tr>
 <?
 
-		if(preg_match("/(^|_)$change($|_)/is", $expand)) {
-			$expandlist = explode('_', $expand);
-			$expand = $underline = '';
-			foreach($expandlist as $count) {
-				if($count != $change) {
-					$expand .= $underline.$count;
-					$underline = '_';
-				}
-			}
-		} else {
-			$expand .= isset($expand) ? '_'.$change : $change;
-		}
+                if(preg_match("/(^|_)$change($|_)/is", $expand)) {
+                        $expandlist = explode('_', $expand);
+                        $expand = $underline = '';
+                        foreach($expandlist as $count) {
+                                if($count != $change) {
+                                        $expand .= $underline.$count;
+                                        $underline = '_';
+                                }
+                        }
+                } else {
+                        $expand .= isset($expand) ? '_'.$change : $change;
+                }
 
-		if($expand || $expand == '0') {
-			setcookie('expand_menu', $expand, $timestamp + 2592000, $cookiepath, $cookiedomain);
-		} else {
-			$expand = $HTTP_COOKIE_VARS['expand_menu'];
-		}
+                if($expand || $expand == '0') {
+                        setcookie('expand_menu', $expand, $timestamp + 2592000, $cookiepath, $cookiedomain);
+                } else {
+                        $expand = $HTTP_COOKIE_VARS['expand_menu'];
+                }
 
-		$pluginsarray = array();
-		if(is_array($plugins)) {
-			foreach($plugins as $plugin) {
-				if($plugin[name] && $plugin[cpurl]) {
-					$pluginsarray[] = array('name' => $plugin['name'], 'url' => $plugin['cpurl']);
-				}
-			}
-		}
+                $pluginsarray = array();
+                if(is_array($plugins)) {
+                        foreach($plugins as $plugin) {
+                                if($plugin[name] && $plugin[cpurl]) {
+                                        $pluginsarray[] = array('name' => $plugin['name'], 'url' => $plugin['cpurl']);
+                                }
+                        }
+                }
 
-		$menucount = 0;
-		showmenu('­º­¶', 'admincp.php?action=main');
-		showmenu('Discuz! ¿ï¶µ', 'admincp.php?action=settings');
-		showmenu('½×¾Â³]¸m', array(	array('name' => '²K¥[½×¾Â', 'url' => 'admincp.php?action=forumadd'),
-						array('name' => '½s¿è½×¾Â', 'url' => 'admincp.php?action=forumsedit'),
-						array('name' => '¦X¨Ö½×¾Â', 'url' => 'admincp.php?action=forumsmerge')));
-		showmenu('¥Î¤áºŞ²z', array(	array('name' => '²K¥[¥Î¤á', 'url' => 'admincp.php?action=addmember'),
-						array('name' => '½s¿è¥Î¤á', 'url' => 'admincp.php?action=members'),
-						array('name' => '¥Î¤á²Õ½s¿è', 'url' => 'admincp.php?action=usergroups'),
-						array('name' => 'µo©«¼Æ¯Å§O', 'url' => 'admincp.php?action=ranks'),
-						array('name' => '¸T¤î IP', 'url' => 'admincp.php?action=ipban')));
-		showmenu('¬É­±­·®æ', array(	array('name' => '¬É­±­·®æ', 'url' => 'admincp.php?action=styles'),
-						array('name' => '¼ÒªO½s¿è', 'url' => 'admincp.php?action=templates')));
-		showmenu('¨ä¥L³]¸m', array(	array('name' => '½×¾Â¤½§i', 'url' => 'admincp.php?action=announcements'),
-						array('name' => 'Áp·ù½×¾Â', 'url' => 'admincp.php?action=forumlinks'),
-						array('name' => 'µü»y¹LÂo', 'url' => 'admincp.php?action=censor'),
-						array('name' => 'Smilies ½s¿è', 'url' => 'admincp.php?action=smilies'),
-						array('name' => 'ªA°È¾¹°Ñ¼Æ', 'url' => 'admincp.php?action=phpinfo')));
-		showmenu('¼Æ¾Ú®w', array(	array('name' => '¸ê®Æ³Æ¥÷', 'url' => 'admincp.php?action=export'),
-						array('name' => '¸ê®Æ«ì´_', 'url' => 'admincp.php?action=import'),
-						array('name' => '¼Æ¾Ú®w¤É¯Å', 'url' => 'admincp.php?action=runquery'),
-						array('name' => '¼Æ¾ÚªíÀu¤Æ', 'url' => 'admincp.php?action=optimize')));
-		showmenu('½×¾ÂºûÅ@', array(	array('name' => '½s¿èªş¥ó', 'url' => 'admincp.php?action=attachments'),
-						array('name' => '§å¶q§R©«', 'url' => 'admincp.php?action=prune'),
-						array('name' => '²M²zµu®ø®§', 'url' => 'admincp.php?action=pmprune')));
-		showmenu('Discuz! ¤u¨ã', array(	array('name' => '½×¾Â³qª¾', 'url' => 'admincp.php?action=newsletter'),
-						array('name' => '§ó·s½w¦s', 'url' => 'admincp.php?action=updatecache'),
-						array('name' => '§ó·s½×¾Â²Î­p', 'url' => 'admincp.php?action=counter')));
-		showmenu('¹B¦æ°O¿ı', array(	array('name' => '±K½X¿ù»~°O¿ı', 'url' => 'admincp.php?action=illegallog'),
-						array('name' => '¥Î¤áµû¤À°O¿ı', 'url' => 'admincp.php?action=karmalog'),
-						array('name' => 'ª©¥DºŞ²z°O¿ı', 'url' => 'admincp.php?action=modslog'),
-						array('name' => '«á¥x³X°İ°O¿ı', 'url' => 'admincp.php?action=cplog'),
-						array('name' => '»È¦æÂà½ã°O¿ı', 'url' => 'admincp.php?action=bankchglog'),
-						array('name' => '¿n¤À¶R½æ°O¿ı', 'url' => 'admincp.php?action=bankbuylog')));
-		showmenu('´¡¥ó³]¸m', $pluginsarray);
-		showmenu('°h¥X', 'admincp.php?action=logout');
+                $menucount = 0;
+                showmenu('é¦–é ', 'admincp.php?action=main');
+                showmenu('Discuz! é¸é …', 'admincp.php?action=settings');
+                showmenu('è«–å£‡è¨­ç½®', array(        array('name' => 'æ·»åŠ è«–å£‡', 'url' => 'admincp.php?action=forumadd'),
+                                                array('name' => 'ç·¨è¼¯è«–å£‡', 'url' => 'admincp.php?action=forumsedit'),
+                                                array('name' => 'åˆä½µè«–å£‡', 'url' => 'admincp.php?action=forumsmerge')));
+                showmenu('ç”¨æˆ¶ç®¡ç†', array(        array('name' => 'æ·»åŠ ç”¨æˆ¶', 'url' => 'admincp.php?action=addmember'),
+                                                array('name' => 'ç·¨è¼¯ç”¨æˆ¶', 'url' => 'admincp.php?action=members'),
+                                                array('name' => 'ç”¨æˆ¶çµ„ç·¨è¼¯', 'url' => 'admincp.php?action=usergroups'),
+                                                array('name' => 'ç™¼å¸–æ•¸ç´šåˆ¥', 'url' => 'admincp.php?action=ranks'),
+                                                array('name' => 'ç¦æ­¢ IP', 'url' => 'admincp.php?action=ipban')));
+                showmenu('ç•Œé¢é¢¨æ ¼', array(        array('name' => 'ç•Œé¢é¢¨æ ¼', 'url' => 'admincp.php?action=styles'),
+                                                array('name' => 'æ¨¡æ¿ç·¨è¼¯', 'url' => 'admincp.php?action=templates')));
+                showmenu('å…¶ä»–è¨­ç½®', array(        array('name' => 'è«–å£‡å…¬å‘Š', 'url' => 'admincp.php?action=announcements'),
+                                                array('name' => 'è¯ç›Ÿè«–å£‡', 'url' => 'admincp.php?action=forumlinks'),
+                                                array('name' => 'è©èªéæ¿¾', 'url' => 'admincp.php?action=censor'),
+                                                array('name' => 'Smilies ç·¨è¼¯', 'url' => 'admincp.php?action=smilies'),
+                                                array('name' => 'æœå‹™å™¨åƒæ•¸', 'url' => 'admincp.php?action=phpinfo')));
+                showmenu('æ•¸æ“šåº«', array(        array('name' => 'è³‡æ–™å‚™ä»½', 'url' => 'admincp.php?action=export'),
+                                                array('name' => 'è³‡æ–™æ¢å¾©', 'url' => 'admincp.php?action=import'),
+                                                array('name' => 'æ•¸æ“šåº«å‡ç´š', 'url' => 'admincp.php?action=runquery'),
+                                                array('name' => 'æ•¸æ“šè¡¨å„ªåŒ–', 'url' => 'admincp.php?action=optimize')));
+                showmenu('è«–å£‡ç¶­è­·', array(        array('name' => 'ç·¨è¼¯é™„ä»¶', 'url' => 'admincp.php?action=attachments'),
+                                                array('name' => 'æ‰¹é‡åˆªå¸–', 'url' => 'admincp.php?action=prune'),
+                                                array('name' => 'æ¸…ç†çŸ­æ¶ˆæ¯', 'url' => 'admincp.php?action=pmprune')));
+                showmenu('Discuz! å·¥å…·', array(        array('name' => 'è«–å£‡é€šçŸ¥', 'url' => 'admincp.php?action=newsletter'),
+                                                array('name' => 'æ›´æ–°ç·©å­˜', 'url' => 'admincp.php?action=updatecache'),
+                                                array('name' => 'æ›´æ–°è«–å£‡çµ±è¨ˆ', 'url' => 'admincp.php?action=counter')));
+                showmenu('é‹è¡Œè¨˜éŒ„', array(        array('name' => 'å¯†ç¢¼éŒ¯èª¤è¨˜éŒ„', 'url' => 'admincp.php?action=illegallog'),
+                                                array('name' => 'ç”¨æˆ¶è©•åˆ†è¨˜éŒ„', 'url' => 'admincp.php?action=karmalog'),
+                                                array('name' => 'ç‰ˆä¸»ç®¡ç†è¨˜éŒ„', 'url' => 'admincp.php?action=modslog'),
+                                                array('name' => 'å¾Œå°è¨ªå•è¨˜éŒ„', 'url' => 'admincp.php?action=cplog'),
+                                                array('name' => 'éŠ€è¡Œè½‰è³¬è¨˜éŒ„', 'url' => 'admincp.php?action=bankchglog'),
+                                                array('name' => 'ç©åˆ†è²·è³£è¨˜éŒ„', 'url' => 'admincp.php?action=bankbuylog')));
+                showmenu('æ’ä»¶è¨­ç½®', $pluginsarray);
+                showmenu('é€€å‡º', 'admincp.php?action=logout');
 
 ?>
 </table></td></tr></table></td></tr></table>
@@ -154,30 +154,30 @@ if(empty($action) || !empty($direct)) {
 
 } else {
 
-	session_set_cookie_params(0, $cookiepath, $cookiedomain);
-	session_name('admin_sid');
-	session_start();
-	session_register('admin_user', 'admin_pw', 'errorlog');
+        session_set_cookie_params(0, $cookiepath, $cookiedomain);
+        session_name('admin_sid');
+        session_start();
+        session_register('admin_user', 'admin_pw', 'errorlog');
 
-	$HTTP_SESSION_VARS['admin_user'] = isset($HTTP_POST_VARS['adusername']) ? $HTTP_POST_VARS['adusername'] : $HTTP_SESSION_VARS['admin_user'];
-	$HTTP_SESSION_VARS['admin_pw'] = isset($HTTP_POST_VARS['adpassword']) ? md5($HTTP_POST_VARS['adpassword']) : $HTTP_SESSION_VARS['admin_pw'];
+        $HTTP_SESSION_VARS['admin_user'] = isset($HTTP_POST_VARS['adusername']) ? $HTTP_POST_VARS['adusername'] : $HTTP_SESSION_VARS['admin_user'];
+        $HTTP_SESSION_VARS['admin_pw'] = isset($HTTP_POST_VARS['adpassword']) ? md5($HTTP_POST_VARS['adpassword']) : $HTTP_SESSION_VARS['admin_pw'];
 
-	if(!$isadmin || $HTTP_SESSION_VARS['errorlog'] >= 2) {
-		clearcookies();
-		$discuz_user = $discuz_pw = '';
-		$status = 'Guest';
-		$groupid = 14;
-		$styleid = $_DCACHE['settings']['styleid'];
+        if(!$isadmin || $HTTP_SESSION_VARS['errorlog'] >= 2) {
+                clearcookies();
+                $discuz_user = $discuz_pw = '';
+                $status = 'Guest';
+                $groupid = 14;
+                $styleid = $_DCACHE['settings']['styleid'];
 
-		cpheader();
-		cpmsg("§A¨S¦³Åv­­³X°İ¨t²Î³]¸m¡C");
-	} elseif($HTTP_SESSION_VARS['admin_user'] != $discuz_user || $HTTP_SESSION_VARS['admin_pw'] != $discuz_pw) {
-		if($HTTP_SESSION_VARS['admin_user']) {
-			$HTTP_SESSION_VARS['errorlog']++;
-		}
-		$action = empty($action) ? 'main' : $action;
-		cpheader();
-	if($discuz_secques == '') cpmsg('§@¬°ºŞ²zªÌ¤§¤@¡A±z»İ­n¶ñ¼g¦w¥ş´£°İ©Mµª®×¥H«O»Ù½×¾Âªº¦w¥ş¡A½Ğªğ¦^¡C');
+                cpheader();
+                cpmsg("ä½ æ²’æœ‰æ¬Šé™è¨ªå•ç³»çµ±è¨­ç½®ã€‚");
+        } elseif($HTTP_SESSION_VARS['admin_user'] != $discuz_user || $HTTP_SESSION_VARS['admin_pw'] != $discuz_pw) {
+                if($HTTP_SESSION_VARS['admin_user']) {
+                        $HTTP_SESSION_VARS['errorlog']++;
+                }
+                $action = empty($action) ? 'main' : $action;
+                cpheader();
+        if($discuz_secques == '') cpmsg('ä½œç‚ºç®¡ç†è€…ä¹‹ä¸€ï¼Œæ‚¨éœ€è¦å¡«å¯«å®‰å…¨æå•å’Œç­”æ¡ˆä»¥ä¿éšœè«–å£‡çš„å®‰å…¨ï¼Œè«‹è¿”å›ã€‚');
 
 ?>
 <br><br><br><br><br><br>
@@ -186,53 +186,53 @@ if(empty($action) || !empty($direct)) {
 <table cellspacing="0" cellpadding="0" border="0" width="60%" align="center">
 <tr><td bgcolor="<?=BORDERCOLOR?>">
 <table border="0" cellspacing="<?=BORDERWIDTH?>" cellpadding="<?=TABLESPACE?>" width="100%">
-<tr class="header"><td colspan="2">½Ğ¿é¤J±zªººŞ²z­û±K½X</td></tr>
-<tr><td bgcolor="<?=ALTBG1?>" width="25%">¥Î¤á¦W¡G</td><td bgcolor="<?=ALTBG2?>"><?=$discuz_user?> <a href="logging.php?action=logout&referer=index.php" target="_blank">[°h¥Xµn¤J]</a></td></tr>
-<tr><td bgcolor="<?=ALTBG1?>" width="25%">±K½X¡G</td><td bgcolor="<?=ALTBG2?>"><input type="password" size="25" name="adpassword"></td></tr>
+<tr class="header"><td colspan="2">è«‹è¼¸å…¥æ‚¨çš„ç®¡ç†å“¡å¯†ç¢¼</td></tr>
+<tr><td bgcolor="<?=ALTBG1?>" width="25%">ç”¨æˆ¶åï¼š</td><td bgcolor="<?=ALTBG2?>"><?=$discuz_user?> <a href="logging.php?action=logout&referer=index.php" target="_blank">[é€€å‡ºç™»å…¥]</a></td></tr>
+<tr><td bgcolor="<?=ALTBG1?>" width="25%">å¯†ç¢¼ï¼š</td><td bgcolor="<?=ALTBG2?>"><input type="password" size="25" name="adpassword"></td></tr>
 </td></tr></table></td></tr></table>
-<br><center><input type="submit" value="´£ &nbsp; ¥æ"></center></form>
+<br><center><input type="submit" value="æ &nbsp; äº¤"></center></form>
 <br><br>
 <?
-		cpfooter();
-		discuz_exit();
-	}
+                cpfooter();
+                discuz_exit();
+        }
 }
 
 if ($action == 'viewattachsize') {
 
-		require_once $discuz_root.'./include/attachment.php';
+                require_once $discuz_root.'./include/attachment.php';
 
-		$serverinfo = PHP_OS.' / PHP v'.PHP_VERSION;
-		$serverinfo .= @ini_get('safe_mode') ? ' ¦w¥ş¼Ò¦¡' : NULL;
-		$dbversion = $db->result($db->query("SELECT VERSION()"), 0);
+                $serverinfo = PHP_OS.' / PHP v'.PHP_VERSION;
+                $serverinfo .= @ini_get('safe_mode') ? ' å®‰å…¨æ¨¡å¼' : NULL;
+                $dbversion = $db->result($db->query("SELECT VERSION()"), 0);
 
-		if(@ini_get("file_uploads")) {
-			$fileupload = "¬O: file ".ini_get("upload_max_filesize")." - form ".ini_get("post_max_size");
-		} else {
-			$fileupload = "<font color=\"red\">§_</font>";
-		}
+                if(@ini_get("file_uploads")) {
+                        $fileupload = "æ˜¯: file ".ini_get("upload_max_filesize")." - form ".ini_get("post_max_size");
+                } else {
+                        $fileupload = "<font color=\"red\">å¦</font>";
+                }
 
-		$forumselect = $groupselect = '';
-		$query = $db->query("SELECT groupid, grouptitle FROM $table_usergroups ORDER BY status, creditslower");
-		while($group = $db->fetch_array($query)) {
-			$groupselect .= "<option value=\"$group[groupid]\">$group[grouptitle]</option>\n";
-		}
-		$query = $db->query("SELECT fid, name FROM $table_forums WHERE type='forum' OR type='sub'");
-		while($forum = $db->fetch_array($query)) {
-			$forumselect .= "<option value=\"$forum[fid]\">$forum[name]</option>\n";
-		}
+                $forumselect = $groupselect = '';
+                $query = $db->query("SELECT groupid, grouptitle FROM $table_usergroups ORDER BY status, creditslower");
+                while($group = $db->fetch_array($query)) {
+                        $groupselect .= "<option value=\"$group[groupid]\">$group[grouptitle]</option>\n";
+                }
+                $query = $db->query("SELECT fid, name FROM $table_forums WHERE type='forum' OR type='sub'");
+                while($forum = $db->fetch_array($query)) {
+                        $forumselect .= "<option value=\"$forum[fid]\">$forum[name]</option>\n";
+                }
 
-		$dbsize = 0;
-		$query = $db->query("SHOW TABLE STATUS LIKE '$tablepre%'", 1);
-		while($table = $db->fetch_array($query)) {
-			$dbsize += $table[Data_length] + $table[Index_length];
-		}
-		$dbsize = $dbsize ? sizecount($dbsize) : "¥¼ª¾";
+                $dbsize = 0;
+                $query = $db->query("SHOW TABLE STATUS LIKE '$tablepre%'", 1);
+                while($table = $db->fetch_array($query)) {
+                        $dbsize += $table[Data_length] + $table[Index_length];
+                }
+                $dbsize = $dbsize ? sizecount($dbsize) : "æœªçŸ¥";
 
 
-		$attachsize = dirsize("./$attachdir");
-		$attachsize = $attachsize ? sizecount($attachsize) : "¥¼ª¾";
-		cpheader();
+                $attachsize = dirsize("./$attachdir");
+                $attachsize = $attachsize ? sizecount($attachsize) : "æœªçŸ¥";
+                cpheader();
 
 ?>
 <font class="mediumtxt">
@@ -243,80 +243,80 @@ Copyright&copy; <a href="http://discuz.hklcf.com" target="_blank">HKLCF.COM</a>,
 <table border="0" cellspacing="<?=BORDERWIDTH?>" cellpadding="0" width="100%">
 <tr><td>
 <table border="0" cellspacing="0" cellpadding="<?=TABLESPACE?>" width="100%">
-<tr class="header"><td colspan="3">§Ö±¶¤è¦¡</td></tr>
-<form method="post" action="admincp.php?action=forumdetail"><tr bgcolor="<?=ALTBG2?>"><td>½s¿è½×¾Â</td>
-<td><select name="fid"><?=$forumselect?></select></td><td><input type="submit" value="´£ ¥æ"></td></tr></form>
-<form method="post" action="admincp.php?action=usergroups&type=detail"><tr bgcolor="<?=ALTBG1?>"><td>½s¿è¥Î¤á²Õ</td>
-<td><select name="id"><?=$groupselect?></td><td><input type="submit" value="´£ ¥æ"></td></tr></form>
-<form method="post" action="admincp.php?action=members"><tr bgcolor="<?=ALTBG2?>"><td>½s¿è¥Î¤á</td>
-<td><input type="text" size="25" name="username"></td><td><input type="submit" name="searchsubmit" value="´£ ¥æ"></td></tr></form>
-<form method="post" action="admincp.php?action=export&type=mini&saveto=server"><tr bgcolor="<?=ALTBG1?>"><td>ºëÂ²³Æ¥÷</td>
-<td><input type="text" size="25" name="filename" value="./forumdata/dz_<?=date("md")."_".random(5)?>.sql"></td><td><input type="submit" name="exportsubmit" value="´£ ¥æ"></td></tr></form>
+<tr class="header"><td colspan="3">å¿«æ·æ–¹å¼</td></tr>
+<form method="post" action="admincp.php?action=forumdetail"><tr bgcolor="<?=ALTBG2?>"><td>ç·¨è¼¯è«–å£‡</td>
+<td><select name="fid"><?=$forumselect?></select></td><td><input type="submit" value="æ äº¤"></td></tr></form>
+<form method="post" action="admincp.php?action=usergroups&type=detail"><tr bgcolor="<?=ALTBG1?>"><td>ç·¨è¼¯ç”¨æˆ¶çµ„</td>
+<td><select name="id"><?=$groupselect?></td><td><input type="submit" value="æ äº¤"></td></tr></form>
+<form method="post" action="admincp.php?action=members"><tr bgcolor="<?=ALTBG2?>"><td>ç·¨è¼¯ç”¨æˆ¶</td>
+<td><input type="text" size="25" name="username"></td><td><input type="submit" name="searchsubmit" value="æ äº¤"></td></tr></form>
+<form method="post" action="admincp.php?action=export&type=mini&saveto=server"><tr bgcolor="<?=ALTBG1?>"><td>ç²¾ç°¡å‚™ä»½</td>
+<td><input type="text" size="25" name="filename" value="./forumdata/dz_<?=date("md")."_".random(5)?>.sql"></td><td><input type="submit" name="exportsubmit" value="æ äº¤"></td></tr></form>
 </table></td></tr></table></td></tr></table><br><br>
 <table cellspacing="0" cellpadding="0" border="0" width="85%" align="center">
 <tr><td bgcolor="<?=BORDERCOLOR?>">
 <table border="0" cellspacing="<?=BORDERWIDTH?>" cellpadding="0" width="100%">
 <tr><td>
 <table border="0" cellspacing="0" cellpadding="<?=TABLESPACE?>" width="100%">
-<tr class="header"><td colspan="2">¨t²Î«H®§</td></tr>
-<tr bgcolor="<?=ALTBG2?>"><td width="50%">¾Ş§@¨t²Î¤Î PHP</td><td><?=$serverinfo?></td></tr>
-<tr bgcolor="<?=ALTBG1?>"><td>MySQL ª©¥»</td><td><?=$dbversion?></td></tr>
-<tr bgcolor="<?=ALTBG2?>"><td>¤W¶Ç³\¥i</td><td><?=$fileupload?></td></tr>
-<tr bgcolor="<?=ALTBG1?>"><td>·í«e¼Æ¾Ú®w¤Ø¤o</td><td><?=$dbsize?></td></tr>
-<tr bgcolor="<?=ALTBG2?>"><td>·í«eªş¥ó¤Ø¤o</td><td><?=$attachsize?></td></tr>
+<tr class="header"><td colspan="2">ç³»çµ±ä¿¡æ¯</td></tr>
+<tr bgcolor="<?=ALTBG2?>"><td width="50%">æ“ä½œç³»çµ±åŠ PHP</td><td><?=$serverinfo?></td></tr>
+<tr bgcolor="<?=ALTBG1?>"><td>MySQL ç‰ˆæœ¬</td><td><?=$dbversion?></td></tr>
+<tr bgcolor="<?=ALTBG2?>"><td>ä¸Šå‚³è¨±å¯</td><td><?=$fileupload?></td></tr>
+<tr bgcolor="<?=ALTBG1?>"><td>ç•¶å‰æ•¸æ“šåº«å°ºå¯¸</td><td><?=$dbsize?></td></tr>
+<tr bgcolor="<?=ALTBG2?>"><td>ç•¶å‰é™„ä»¶å°ºå¯¸</td><td><?=$attachsize?></td></tr>
 </table></td></tr></table></td></tr></table><br><br>
 <table cellspacing="0" cellpadding="0" border="0" width="85%" align="center">
 <tr><td bgcolor="<?=BORDERCOLOR?>">
 <table border="0" cellspacing="<?=BORDERWIDTH?>" cellpadding="0" width="100%">
 <tr><td>
 <table border="0" cellspacing="0" cellpadding="<?=TABLESPACE?>" width="100%">
-<tr class="header"><td colspan="2">Discuz! Plus ¶}µo¹Î¶¤</td></tr>
-<tr bgcolor="<?=ALTBG2?>"><td width="50%">²£«~µ¦¹º»P¶}µo</td><td><a href="http://www.crossdasy.com" target="_blank">Crossday</a> (3.1.2), <a href="http://discuz.hklcf.com" target="_blank">HKLCF</a> (1.1.0)</td></tr>
-<tr bgcolor="<?=ALTBG1?>"><td>¥«³õ±À¼s</td><td><a href="http://discuz.hklcf.com" target="_blank">¢¢¡¹HKLCF¡¸¢¡</a></td></tr>
-<tr bgcolor="<?=ALTBG2?>"><td>Hack »P´¡¥ó³]­p</td><td><a href="http://discuz.hklcf.com" target="_blank">HKLCF</a></td></tr>
-<tr bgcolor="<?=ALTBG2?>"><td>¬É­±¬ü¤u³]­p</td><td><a href="http://hklcf.com" target="_blank">HKLCF</a></td></tr>
-<tr bgcolor="<?=ALTBG1?>"><td>©x¤èºô¯¸</td><td><a href="http://discuz.hklcf.com" target="_blank">http://Discuz.hklcf.com</a></td></tr>
-<tr bgcolor="<?=ALTBG2?>"><td>§Ş³N¤ä«ù½×¾Â</td><td><a href="http://discuz.hklcf.com" target="_blank">http://Discuz.hklcf.com</a></td></tr>
+<tr class="header"><td colspan="2">Discuz! Plus é–‹ç™¼åœ˜éšŠ</td></tr>
+<tr bgcolor="<?=ALTBG2?>"><td width="50%">ç”¢å“ç­–åŠƒèˆ‡é–‹ç™¼</td><td><a href="http://www.crossdasy.com" target="_blank">Crossday</a> (3.1.2), <a href="http://discuz.hklcf.com" target="_blank">HKLCF</a> (1.1.0)</td></tr>
+<tr bgcolor="<?=ALTBG1?>"><td>å¸‚å ´æ¨å»£</td><td><a href="http://discuz.hklcf.com" target="_blank">â•°â˜…HKLCFâ˜†â•®</a></td></tr>
+<tr bgcolor="<?=ALTBG2?>"><td>Hack èˆ‡æ’ä»¶è¨­è¨ˆ</td><td><a href="http://discuz.hklcf.com" target="_blank">HKLCF</a></td></tr>
+<tr bgcolor="<?=ALTBG2?>"><td>ç•Œé¢ç¾å·¥è¨­è¨ˆ</td><td><a href="http://hklcf.com" target="_blank">HKLCF</a></td></tr>
+<tr bgcolor="<?=ALTBG1?>"><td>å®˜æ–¹ç¶²ç«™</td><td><a href="http://discuz.hklcf.com" target="_blank">http://Discuz.hklcf.com</a></td></tr>
+<tr bgcolor="<?=ALTBG2?>"><td>æŠ€è¡“æ”¯æŒè«–å£‡</td><td><a href="http://discuz.hklcf.com" target="_blank">http://Discuz.hklcf.com</a></td></tr>
 </table></td></tr></table></td></tr></table>
 <?
 }
 
-	if ($action == 'main') {
+        if ($action == 'main') {
 
-		require_once $discuz_root.'./include/attachment.php';
+                require_once $discuz_root.'./include/attachment.php';
 
-		$serverinfo = PHP_OS.' / PHP v'.PHP_VERSION;
-		$serverinfo .= @ini_get('safe_mode') ? ' ¦w¥ş¼Ò¦¡' : NULL;
-		$dbversion = $db->result($db->query("SELECT VERSION()"), 0);
+                $serverinfo = PHP_OS.' / PHP v'.PHP_VERSION;
+                $serverinfo .= @ini_get('safe_mode') ? ' å®‰å…¨æ¨¡å¼' : NULL;
+                $dbversion = $db->result($db->query("SELECT VERSION()"), 0);
 
-		if(@ini_get("file_uploads")) {
-			$fileupload = "¬O: file ".ini_get("upload_max_filesize")." - form ".ini_get("post_max_size");
-		} else {
-			$fileupload = "<font color=\"red\">§_</font>";
-		}
+                if(@ini_get("file_uploads")) {
+                        $fileupload = "æ˜¯: file ".ini_get("upload_max_filesize")." - form ".ini_get("post_max_size");
+                } else {
+                        $fileupload = "<font color=\"red\">å¦</font>";
+                }
 
-		$forumselect = $groupselect = '';
-		$query = $db->query("SELECT groupid, grouptitle FROM $table_usergroups ORDER BY status, creditslower");
-		while($group = $db->fetch_array($query)) {
-			$groupselect .= "<option value=\"$group[groupid]\">$group[grouptitle]</option>\n";
-		}
-		$query = $db->query("SELECT fid, name FROM $table_forums WHERE type='forum' OR type='sub'");
-		while($forum = $db->fetch_array($query)) {
-			$forumselect .= "<option value=\"$forum[fid]\">$forum[name]</option>\n";
-		}
+                $forumselect = $groupselect = '';
+                $query = $db->query("SELECT groupid, grouptitle FROM $table_usergroups ORDER BY status, creditslower");
+                while($group = $db->fetch_array($query)) {
+                        $groupselect .= "<option value=\"$group[groupid]\">$group[grouptitle]</option>\n";
+                }
+                $query = $db->query("SELECT fid, name FROM $table_forums WHERE type='forum' OR type='sub'");
+                while($forum = $db->fetch_array($query)) {
+                        $forumselect .= "<option value=\"$forum[fid]\">$forum[name]</option>\n";
+                }
 
-		$dbsize = 0;
-		$query = $db->query("SHOW TABLE STATUS LIKE '$tablepre%'", 1);
-		while($table = $db->fetch_array($query)) {
-			$dbsize += $table[Data_length] + $table[Index_length];
-		}
-		$dbsize = $dbsize ? sizecount($dbsize) : "¥¼ª¾";
+                $dbsize = 0;
+                $query = $db->query("SHOW TABLE STATUS LIKE '$tablepre%'", 1);
+                while($table = $db->fetch_array($query)) {
+                        $dbsize += $table[Data_length] + $table[Index_length];
+                }
+                $dbsize = $dbsize ? sizecount($dbsize) : "æœªçŸ¥";
 
-		//$attachsize = dirsize("./$attachdir");
-		//$attachsize = $attachsize ? sizecount($attachsize) : "¥¼ª¾";
-		$attachsize = "<a href=\"admincp.php?action=viewattachsize\">²Î­p·í«eªş¥ó¤Ø¤o</a>\n";
+                //$attachsize = dirsize("./$attachdir");
+                //$attachsize = $attachsize ? sizecount($attachsize) : "æœªçŸ¥";
+                $attachsize = "<a href=\"admincp.php?action=viewattachsize\">çµ±è¨ˆç•¶å‰é™„ä»¶å°ºå¯¸</a>\n";
 
-		cpheader();
+                cpheader();
 
 ?>
 
@@ -328,80 +328,80 @@ Copyright&copy; <a href="http://discuz.hklcf.com" target="_blank">HKLCF.COM</a>,
 <table border="0" cellspacing="<?=BORDERWIDTH?>" cellpadding="0" width="100%">
 <tr><td>
 <table border="0" cellspacing="0" cellpadding="<?=TABLESPACE?>" width="100%">
-<tr class="header"><td colspan="3">§Ö±¶¤è¦¡</td></tr>
-<form method="post" action="admincp.php?action=forumdetail"><tr bgcolor="<?=ALTBG2?>"><td>½s¿è½×¾Â</td>
-<td><select name="fid"><?=$forumselect?></select></td><td><input type="submit" value="´£ ¥æ"></td></tr></form>
-<form method="post" action="admincp.php?action=usergroups&type=detail"><tr bgcolor="<?=ALTBG1?>"><td>½s¿è¥Î¤á²Õ</td>
-<td><select name="id"><?=$groupselect?></td><td><input type="submit" value="´£ ¥æ"></td></tr></form>
-<form method="post" action="admincp.php?action=members"><tr bgcolor="<?=ALTBG2?>"><td>½s¿è¥Î¤á</td>
-<td><input type="text" size="25" name="username"></td><td><input type="submit" name="searchsubmit" value="´£ ¥æ"></td></tr></form>
-<form method="post" action="admincp.php?action=export&type=mini&saveto=server"><tr bgcolor="<?=ALTBG1?>"><td>ºëÂ²³Æ¥÷</td>
-<td><input type="text" size="25" name="filename" value="./forumdata/dz_<?=date("md")."_".random(5)?>.sql"></td><td><input type="submit" name="exportsubmit" value="´£ ¥æ"></td></tr></form>
+<tr class="header"><td colspan="3">å¿«æ·æ–¹å¼</td></tr>
+<form method="post" action="admincp.php?action=forumdetail"><tr bgcolor="<?=ALTBG2?>"><td>ç·¨è¼¯è«–å£‡</td>
+<td><select name="fid"><?=$forumselect?></select></td><td><input type="submit" value="æ äº¤"></td></tr></form>
+<form method="post" action="admincp.php?action=usergroups&type=detail"><tr bgcolor="<?=ALTBG1?>"><td>ç·¨è¼¯ç”¨æˆ¶çµ„</td>
+<td><select name="id"><?=$groupselect?></td><td><input type="submit" value="æ äº¤"></td></tr></form>
+<form method="post" action="admincp.php?action=members"><tr bgcolor="<?=ALTBG2?>"><td>ç·¨è¼¯ç”¨æˆ¶</td>
+<td><input type="text" size="25" name="username"></td><td><input type="submit" name="searchsubmit" value="æ äº¤"></td></tr></form>
+<form method="post" action="admincp.php?action=export&type=mini&saveto=server"><tr bgcolor="<?=ALTBG1?>"><td>ç²¾ç°¡å‚™ä»½</td>
+<td><input type="text" size="25" name="filename" value="./forumdata/dz_<?=date("md")."_".random(5)?>.sql"></td><td><input type="submit" name="exportsubmit" value="æ äº¤"></td></tr></form>
 </table></td></tr></table></td></tr></table><br><br>
 <table cellspacing="0" cellpadding="0" border="0" width="85%" align="center">
 <tr><td bgcolor="<?=BORDERCOLOR?>">
 <table border="0" cellspacing="<?=BORDERWIDTH?>" cellpadding="0" width="100%">
 <tr><td>
 <table border="0" cellspacing="0" cellpadding="<?=TABLESPACE?>" width="100%">
-<tr class="header"><td colspan="2">¨t²Î«H®§</td></tr>
-<tr bgcolor="<?=ALTBG2?>"><td width="50%">¾Ş§@¨t²Î¤Î PHP</td><td><?=$serverinfo?></td></tr>
-<tr bgcolor="<?=ALTBG1?>"><td>MySQL ª©¥»</td><td><?=$dbversion?></td></tr>
-<tr bgcolor="<?=ALTBG2?>"><td>¤W¶Ç³\¥i</td><td><?=$fileupload?></td></tr>
-<tr bgcolor="<?=ALTBG1?>"><td>·í«e¼Æ¾Ú®w¤Ø¤o</td><td><?=$dbsize?></td></tr>
-<tr bgcolor="<?=ALTBG2?>"><td>·í«eªş¥ó¤Ø¤o</td><td><?=$attachsize?></td></tr>
+<tr class="header"><td colspan="2">ç³»çµ±ä¿¡æ¯</td></tr>
+<tr bgcolor="<?=ALTBG2?>"><td width="50%">æ“ä½œç³»çµ±åŠ PHP</td><td><?=$serverinfo?></td></tr>
+<tr bgcolor="<?=ALTBG1?>"><td>MySQL ç‰ˆæœ¬</td><td><?=$dbversion?></td></tr>
+<tr bgcolor="<?=ALTBG2?>"><td>ä¸Šå‚³è¨±å¯</td><td><?=$fileupload?></td></tr>
+<tr bgcolor="<?=ALTBG1?>"><td>ç•¶å‰æ•¸æ“šåº«å°ºå¯¸</td><td><?=$dbsize?></td></tr>
+<tr bgcolor="<?=ALTBG2?>"><td>ç•¶å‰é™„ä»¶å°ºå¯¸</td><td><?=$attachsize?></td></tr>
 </table></td></tr></table></td></tr></table><br><br>
 <table cellspacing="0" cellpadding="0" border="0" width="85%" align="center">
 <tr><td bgcolor="<?=BORDERCOLOR?>">
 <table border="0" cellspacing="<?=BORDERWIDTH?>" cellpadding="0" width="100%">
 <tr><td>
 <table border="0" cellspacing="0" cellpadding="<?=TABLESPACE?>" width="100%">
-<tr class="header"><td colspan="2">Discuz! Plus¶}µo¹Î¶¤</td></tr>
-<tr bgcolor="<?=ALTBG2?>"><td width="50%">²£«~µ¦¹º»P¶}µo</td><td><a href="http://www.crossdasy.com" target="_blank">Crossday</a> (3.1.2), <a href="http://discuz.hklcf.com" target="_blank">HKLCF</a> (1.1.0)</td></tr>
-<tr bgcolor="<?=ALTBG1?>"><td>¥«³õ±À¼s</td><td><a href="http://discuz.hklcf.com" target="_blank">¢¢¡¹HKLCF¡¸¢¡</a></td></tr>
-<tr bgcolor="<?=ALTBG2?>"><td>Hack »P´¡¥ó³]­p</td><td><a href="http://discuz.hklcf.com" target="_blank">HKLCF</a></td></tr>
-<tr bgcolor="<?=ALTBG2?>"><td>¬É­±¬ü¤u³]­p</td><td><a href="http://hklcf.com" target="_blank">HKLCF</a></td></tr>
-<tr bgcolor="<?=ALTBG1?>"><td>©x¤èºô¯¸</td><td><a href="http://discuz.hklcf.com" target="_blank">http://Discuz.hklcf.com</a></td></tr>
-<tr bgcolor="<?=ALTBG2?>"><td>§Ş³N¤ä«ù½×¾Â</td><td><a href="http://discuz.hklcf.com" target="_blank">http://Discuz.hklcf.com</a></td></tr>
+<tr class="header"><td colspan="2">Discuz! Plusé–‹ç™¼åœ˜éšŠ</td></tr>
+<tr bgcolor="<?=ALTBG2?>"><td width="50%">ç”¢å“ç­–åŠƒèˆ‡é–‹ç™¼</td><td><a href="http://www.crossdasy.com" target="_blank">Crossday</a> (3.1.2), <a href="http://discuz.hklcf.com" target="_blank">HKLCF</a> (1.1.0)</td></tr>
+<tr bgcolor="<?=ALTBG1?>"><td>å¸‚å ´æ¨å»£</td><td><a href="http://discuz.hklcf.com" target="_blank">â•°â˜…HKLCFâ˜†â•®</a></td></tr>
+<tr bgcolor="<?=ALTBG2?>"><td>Hack èˆ‡æ’ä»¶è¨­è¨ˆ</td><td><a href="http://discuz.hklcf.com" target="_blank">HKLCF</a></td></tr>
+<tr bgcolor="<?=ALTBG2?>"><td>ç•Œé¢ç¾å·¥è¨­è¨ˆ</td><td><a href="http://hklcf.com" target="_blank">HKLCF</a></td></tr>
+<tr bgcolor="<?=ALTBG1?>"><td>å®˜æ–¹ç¶²ç«™</td><td><a href="http://discuz.hklcf.com" target="_blank">http://Discuz.hklcf.com</a></td></tr>
+<tr bgcolor="<?=ALTBG2?>"><td>æŠ€è¡“æ”¯æŒè«–å£‡</td><td><a href="http://discuz.hklcf.com" target="_blank">http://Discuz.hklcf.com</a></td></tr>
 </table></td></tr></table></td></tr></table>
 <?
 
-	} elseif($action == 'settings') {
-		require $discuz_root.'./admin/settings.php';
-	} elseif($action == 'phpinfo') {
-		require $discuz_root.'./admin/phpinfo.php';
-	} elseif($action == 'forumadd' || $action == 'forumsedit' || $action == 'forumsmerge' || $action == 'forumdetail' || $action == 'forumdelete') {
-		require $discuz_root.'./admin/forums.php';
-	} elseif($action == 'addmember' || $action == 'members' || $action == 'memberprofile' || $action == 'usergroups' || $action == 'ipban') {
-		require $discuz_root.'./admin/members.php';
-	} elseif($action == 'ranks') {
-		require $discuz_root.'./admin/rank.php';
-	} elseif($action == 'announcements') {
-		require $discuz_root.'./admin/announcements.php';
-	} elseif($action == 'styles') {
-		require $discuz_root.'./admin/styles.php';
-	} elseif($action == 'templates' || $action == 'tpladd' || $action == 'tpledit') {
-		require $discuz_root.'./admin/templates.php';
-	} elseif($action == 'forumlinks' || $action == 'censor' || $action == 'smilies' || $action == 'updatecache' || $action == 'logout') {
-		require $discuz_root.'./admin/misc.php';
-	} elseif($action == 'export' || $action == 'import' || $action == 'runquery' || $action == 'optimize') {
-		require $discuz_root.'./admin/database.php';
-	} elseif($action == 'attachments') {
-		require $discuz_root.'./admin/attachments.php';
-	} elseif($action == 'counter') {
-		require $discuz_root.'./admin/counter.php';
-	} elseif($action == 'prune' || $action == 'pmprune') {
-		require $discuz_root.'./admin/prune.php';
-	} elseif($action == 'newsletter') {
-		require $discuz_root.'./admin/newsletter.php';
-	} elseif($action == 'advcenter') {
-		require $discuz_root.'./admin/advcenter.php';
-	} elseif($action == 'illegallog' || $action == 'karmalog' || $action == 'modslog' || $action == 'cplog' || $action == 'bankchglog' || $action == 'bankbuylog') {
-		require $discuz_root.'./admin/logs.php';
-	}
+        } elseif($action == 'settings') {
+                require $discuz_root.'./admin/settings.php';
+        } elseif($action == 'phpinfo') {
+                require $discuz_root.'./admin/phpinfo.php';
+        } elseif($action == 'forumadd' || $action == 'forumsedit' || $action == 'forumsmerge' || $action == 'forumdetail' || $action == 'forumdelete') {
+                require $discuz_root.'./admin/forums.php';
+        } elseif($action == 'addmember' || $action == 'members' || $action == 'memberprofile' || $action == 'usergroups' || $action == 'ipban') {
+                require $discuz_root.'./admin/members.php';
+        } elseif($action == 'ranks') {
+                require $discuz_root.'./admin/rank.php';
+        } elseif($action == 'announcements') {
+                require $discuz_root.'./admin/announcements.php';
+        } elseif($action == 'styles') {
+                require $discuz_root.'./admin/styles.php';
+        } elseif($action == 'templates' || $action == 'tpladd' || $action == 'tpledit') {
+                require $discuz_root.'./admin/templates.php';
+        } elseif($action == 'forumlinks' || $action == 'censor' || $action == 'smilies' || $action == 'updatecache' || $action == 'logout') {
+                require $discuz_root.'./admin/misc.php';
+        } elseif($action == 'export' || $action == 'import' || $action == 'runquery' || $action == 'optimize') {
+                require $discuz_root.'./admin/database.php';
+        } elseif($action == 'attachments') {
+                require $discuz_root.'./admin/attachments.php';
+        } elseif($action == 'counter') {
+                require $discuz_root.'./admin/counter.php';
+        } elseif($action == 'prune' || $action == 'pmprune') {
+                require $discuz_root.'./admin/prune.php';
+        } elseif($action == 'newsletter') {
+                require $discuz_root.'./admin/newsletter.php';
+        } elseif($action == 'advcenter') {
+                require $discuz_root.'./admin/advcenter.php';
+        } elseif($action == 'illegallog' || $action == 'karmalog' || $action == 'modslog' || $action == 'cplog' || $action == 'bankchglog' || $action == 'bankbuylog') {
+                require $discuz_root.'./admin/logs.php';
+        }
 
-	if($action != 'menu' && $action != 'header') {
-		cpfooter();
-	}
+        if($action != 'menu' && $action != 'header') {
+                cpfooter();
+        }
 
 discuz_output();
 
