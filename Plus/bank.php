@@ -1,20 +1,20 @@
 <?php
 
 /*
-	Version: 1.0.0(BUG Fixed)
-	Author: HKLCF (admin@hklcf.com)
-	Copyright: HKLCF (www.hklcf.com)
-	Last Modified: 2004/09/22
+        Version: 1.0.0(BUG Fixed)
+        Author: HKLCF (admin@hklcf.com)
+        Copyright: HKLCF (www.hklcf.com)
+        Last Modified: 2004/09/22
 */
 
 require './include/common.php';
 require_once './advcenter/bank_config.php';
 $discuz_action = 8;
-$navtitle = '½×¾Â»È¦æ';
+$navtitle = 'è«–å£‡éŠ€è¡Œ';
 $mastername = "$bankmanager";
 
 if(!$discuz_user) {
-	showmessage('not_loggedin');
+        showmessage('not_loggedin');
 }
 
 if (!isset($action) or $action=='') {
@@ -25,14 +25,14 @@ $master=$db->fetch_array($query);
 $masterall = $master['money']+$master['bank'];
 
 if(!$isadmin){
-	if ($banksettings['close']) showmessage($banksettings['message']);
-	if (((!$banksettings['allowchange'] && $action=='change')) || (!$banksettings['allowsell'] && ($action=='sell' || $action=='buy'))) showmessage('¹ï¤£°_¡A»È¦æ¼È°±¿ì²z¦¹¶µ·~°È¡C');
+        if ($banksettings['close']) showmessage($banksettings['message']);
+        if (((!$banksettings['allowchange'] && $action=='change')) || (!$banksettings['allowsell'] && ($action=='sell' || $action=='buy'))) showmessage('å°ä¸èµ·ï¼ŒéŠ€è¡Œæš«åœè¾¦ç†æ­¤é …æ¥­å‹™ã€‚');
 }
 
 $query = $db->query("
                 SELECT avatar,credit,bank,money,savemt FROM $table_members WHERE username='$discuz_user'"); 
 $userbank=$db->fetch_array($query);
-$userbank['avatar'] = $userbank['avatar'] ? image($userbank['avatar']) : "<br>¨S¦³ÀY¹³<br>";
+$userbank['avatar'] = $userbank['avatar'] ? image($userbank['avatar']) : "<br>æ²’æœ‰é ­åƒ<br>";
 $bank=$actionmoney?intval(trim($actionmoney)):0;
 $accrnum=$banksettings['accrual']*100; 
 $changetaxnum=$banksettings['changetax']*100; 
@@ -40,207 +40,207 @@ $selltaxnum=$banksettings['selltax']*100;
 $changemoney= round(($userbank['bank']-$banksettings['minsave'])/($banksettings['changetax']+1));
 if ($changemoney<1) $changemoney =0;
 
-//########################## ¦s´Ú #################
+//########################## å­˜æ¬¾ #################
 if ($action=="save") {
-	if ($bank<1 || $bank>$userbank['money']){
-		showmessage('ª÷ÃB¿ù»~¡I');
-	}else{
-		$lixi=checklixi($userbank);
-		$query = $db->query("UPDATE $table_members SET
-	          money=money-$bank,bank=bank+$bank+$lixi,savemt='$timestamp' WHERE username='$discuz_user'");
-		   showmessage('²{ª÷«O¦s§¹²¦¡A±q²{¦b°_¡A»È¦æ±N­«·s­pºâ§Aªº§Q®§¡C','bank.php?action=showroom');
-	} 
-}elseif ($action=="lixi") {  //===============§Q®§µ²ºâ==================
+        if ($bank<1 || $bank>$userbank['money']){
+                showmessage('é‡‘é¡éŒ¯èª¤ï¼');
+        }else{
+                $lixi=checklixi($userbank);
+                $query = $db->query("UPDATE $table_members SET
+                  money=money-$bank,bank=bank+$bank+$lixi,savemt='$timestamp' WHERE username='$discuz_user'");
+                   showmessage('ç¾é‡‘ä¿å­˜å®Œç•¢ï¼Œå¾ç¾åœ¨èµ·ï¼ŒéŠ€è¡Œå°‡é‡æ–°è¨ˆç®—ä½ çš„åˆ©æ¯ã€‚','bank.php?action=showroom');
+        } 
+}elseif ($action=="lixi") {  //===============åˆ©æ¯çµç®—==================
 
-		$lixi=checklixi($userbank);
-		$query = $db->query("UPDATE $table_members SET
-	          bank=bank+$lixi,savemt='$timestamp' WHERE username='$discuz_user'");
-		   showmessage('§Aªº§Q®§¤w¸g²Mºâ§¹²¦¡A¦P®É«O¦s¨ì»È¦æ¡C','bank.php?action=showroom');
-}elseif ($action=="load") {   //===============¨ú´Ú==================
-	if ($bank<1 || $bank>$userbank['bank']) {
-		showmessage('ª÷ÃB¿ù»~¡I¨ú´Ú¥¢±Ñ¡I');
-	}else{
-		$lixi=checklixi($userbank);
-		$query = $db->query("UPDATE $table_members SET bank=bank-$bank+$lixi,savemt='$timestamp',money=money+$bank WHERE username='$discuz_user'");
-		showmessage('²{ª÷´£¨ú§¹²¦¡A±q²{¦b°_¡A»È¦æ±N­«·s­pºâ§Aªº§Q®§¡C','bank.php?action=showroom');
-	} 
-}elseif($action=="buy") {   //===============¶R¤J¿n¤À==================
-	$bank_tax=round($bank * $banksettings['selltax']);
-	$yourcash= $bank * $banksettings['buy']+$bank_tax;
-	$yourmoney= $userbank['money']-$yourcash;
-	if ($bank<1 || $yourcash>$userbank['money']) {
-		showmessage('¼Æ¶q¿ù»~¡IÁÊ¶R¥¢±Ñ¡C');
-	}else{
-		if (!submitcheck($submit)){
-			$bankaction='¶R¤J¿n¤À';
-			include template('bank_submit');
-			exit;
-		}
-		$banklog = "$discuz_user\t$onlineip\t¶R¤J\t$bank\t$timestamp\n";
-		@$fp = fopen($discuz_root.'./forumdata/bankbuylog.php', 'a');
-		@flock($fp, 3);
-		@fwrite($fp, $banklog);
-		@fclose($fp);
+                $lixi=checklixi($userbank);
+                $query = $db->query("UPDATE $table_members SET
+                  bank=bank+$lixi,savemt='$timestamp' WHERE username='$discuz_user'");
+                   showmessage('ä½ çš„åˆ©æ¯å·²ç¶“æ¸…ç®—å®Œç•¢ï¼ŒåŒæ™‚ä¿å­˜åˆ°éŠ€è¡Œã€‚','bank.php?action=showroom');
+}elseif ($action=="load") {   //===============å–æ¬¾==================
+        if ($bank<1 || $bank>$userbank['bank']) {
+                showmessage('é‡‘é¡éŒ¯èª¤ï¼å–æ¬¾å¤±æ•—ï¼');
+        }else{
+                $lixi=checklixi($userbank);
+                $query = $db->query("UPDATE $table_members SET bank=bank-$bank+$lixi,savemt='$timestamp',money=money+$bank WHERE username='$discuz_user'");
+                showmessage('ç¾é‡‘æå–å®Œç•¢ï¼Œå¾ç¾åœ¨èµ·ï¼ŒéŠ€è¡Œå°‡é‡æ–°è¨ˆç®—ä½ çš„åˆ©æ¯ã€‚','bank.php?action=showroom');
+        } 
+}elseif($action=="buy") {   //===============è²·å…¥ç©åˆ†==================
+        $bank_tax=round($bank * $banksettings['selltax']);
+        $yourcash= $bank * $banksettings['buy']+$bank_tax;
+        $yourmoney= $userbank['money']-$yourcash;
+        if ($bank<1 || $yourcash>$userbank['money']) {
+                showmessage('æ•¸é‡éŒ¯èª¤ï¼è³¼è²·å¤±æ•—ã€‚');
+        }else{
+                if (!submitcheck($submit)){
+                        $bankaction='è²·å…¥ç©åˆ†';
+                        include template('bank_submit');
+                        exit;
+                }
+                $banklog = "$discuz_user\t$onlineip\tè²·å…¥\t$bank\t$timestamp\n";
+                @$fp = fopen($discuz_root.'./forumdata/bankbuylog.php', 'a');
+                @flock($fp, 3);
+                @fwrite($fp, $banklog);
+                @fclose($fp);
 
-		$lixi=checklixi($userbank);
-		$query = $db->query("UPDATE $table_members SET credit=credit+$bank, 
-	          money=money-$yourcash WHERE username='$discuz_user'");
-		   showmessage("ÁÊ¶R¦¨¥\¡A§Aªº¿n¤À¼W¥[¤F $bank ¡AÁ`¦@ªá¶O²{ª÷ $yourcash ¡C",'bank.php?action=showroom');
-	} 
-}elseif ($action=="sell") {   //===============¿n¤À¥X°â==================
-	$bank_tax=round($bank * $banksettings[sell]*$banksettings['selltax']);
-	$yourcash=round( $bank *$banksettings[sell]-$bank_tax);
-	if ($bank<1 or $bank>$userbank['credit']){
-		showmessage('¼Æ¶q¿ù»~¡I±zªº½æ¥Xªº¿n¤À³Ì¤Ö¬°1¤À¡A³Ì¦h¤£¯à¶W¹L§Aªº¿n¤À¡I');
-	}
-	if (!submitcheck($submit)){
-		$yourcredit= $userbank['credit']-$bank;
-		$bankaction='¥X°â¿n¤À';
-		include template('bank_submit');
-		exit;
-	}else{
-		$banklog = "$discuz_user\t$onlineip\t½æ¥X\t$bank\t$timestamp\n";
-		@$fp = fopen($discuz_root.'./forumdata/bankbuylog.php', 'a');
-		@flock($fp, 3);
-		@fwrite($fp, $banklog);
-		@fclose($fp);
-		$lixi=checklixi($userbank);
-		$query = $db->query("UPDATE $table_members SET credit=credit-$bank, money=money+$yourcash WHERE username='$discuz_user'");
-		showmessage("ÁÊ¶R¦¨¥\¡A§Aªº²{ª÷¼W¥[¤F $yourcash ¡AÁ`¦@ªá¶O¿n¤À $bank ¡C",'bank.php?action=showroom');
-	}
-	 
-}elseif($action=="change") {   //===============»È¦æÂà½ã==================
-	$changeuser=trim($changeuser);
-	$query = $db->query("
+                $lixi=checklixi($userbank);
+                $query = $db->query("UPDATE $table_members SET credit=credit+$bank, 
+                  money=money-$yourcash WHERE username='$discuz_user'");
+                   showmessage("è³¼è²·æˆåŠŸï¼Œä½ çš„ç©åˆ†å¢åŠ äº† $bank ï¼Œç¸½å…±èŠ±è²»ç¾é‡‘ $yourcash ã€‚",'bank.php?action=showroom');
+        } 
+}elseif ($action=="sell") {   //===============ç©åˆ†å‡ºå”®==================
+        $bank_tax=round($bank * $banksettings[sell]*$banksettings['selltax']);
+        $yourcash=round( $bank *$banksettings[sell]-$bank_tax);
+        if ($bank<1 or $bank>$userbank['credit']){
+                showmessage('æ•¸é‡éŒ¯èª¤ï¼æ‚¨çš„è³£å‡ºçš„ç©åˆ†æœ€å°‘ç‚º1åˆ†ï¼Œæœ€å¤šä¸èƒ½è¶…éä½ çš„ç©åˆ†ï¼');
+        }
+        if (!submitcheck($submit)){
+                $yourcredit= $userbank['credit']-$bank;
+                $bankaction='å‡ºå”®ç©åˆ†';
+                include template('bank_submit');
+                exit;
+        }else{
+                $banklog = "$discuz_user\t$onlineip\tè³£å‡º\t$bank\t$timestamp\n";
+                @$fp = fopen($discuz_root.'./forumdata/bankbuylog.php', 'a');
+                @flock($fp, 3);
+                @fwrite($fp, $banklog);
+                @fclose($fp);
+                $lixi=checklixi($userbank);
+                $query = $db->query("UPDATE $table_members SET credit=credit-$bank, money=money+$yourcash WHERE username='$discuz_user'");
+                showmessage("è³¼è²·æˆåŠŸï¼Œä½ çš„ç¾é‡‘å¢åŠ äº† $yourcash ï¼Œç¸½å…±èŠ±è²»ç©åˆ† $bank ã€‚",'bank.php?action=showroom');
+        }
+         
+}elseif($action=="change") {   //===============éŠ€è¡Œè½‰è³¬==================
+        $changeuser=trim($changeuser);
+        $query = $db->query("
                 SELECT username,credit,bank,money,savemt FROM $table_members WHERE username='$changeuser'"); 
-	$user2bank=$db->fetch_array($query);
-	$bank_tax =round($bank*$banksettings['changetax']);
-	$changecost =$bank+$bank_tax;
-	$yourbank = $userbank['bank']-$changecost;
-	if ($bank<1)  {
-		showmessage('ª÷ÃB¿ù»~¡I±zªºª÷ÃB¦Ü¤Ö­n 1 ­Óª÷¹ô.');
-	}else if($bank>$changemoney) {
-		showmessage("ª÷ÃB¿ù»~¡IÂà½ã¥H¦Z¡A§Aªº»È¦æ¦s´Ú¦Ü¤Ö­n«O¯d".$banksettings['minsave']."!");
-	}else if($userbank['bank']-$changecost<$banksettings['minsave']) {
-		showmessage("ª÷ÃB¿ù»~¡I³Ñ¤Uªº¦s´Ú¤£¨¬¥H¤ä¥I§Aªº¤âÄò¶O!");
-	}else if($discuz_user==$changeuser) {
-		showmessage('¤z¶Ü°Ú¡A¦Û¤vÂà½ãµ¹¦Û¤v¡I');
-	}else if(!$user2bank[username]) {
-		showmessage('¥Î¤á¦W¿ù»~¡A·í«e½×¾Â¤º¨S¦³³o­Ó¤H¡I');
-	}
-	if (!submitcheck($submit)){
-			$bankaction='Âà½ã¶×´Ú';
-			include template('bank_submit');
-			exit;
-	}else{
-		$banklog = "$discuz_user\t$onlineip\t$bank\t$changeuser\t$timestamp\n";
-		@$fp = fopen($discuz_root.'./forumdata/bankchglog.php', 'a');
-		@flock($fp, 3);
-		@fwrite($fp, $banklog);
-		@fclose($fp);
-		$lixi=checklixi($userbank);
-		$query = $db->query("UPDATE $table_members SET bank=bank-$changecost+$lixi,savemt='$timestamp' WHERE username='$discuz_user'");
-		$lixi=checklixi($user2bank);
-		$query = $db->query("UPDATE $table_members SET bank=bank+$bank+$lixi,savemt='$timestamp' WHERE username='$changeuser'");
-		$subject="<B>[»È¦æ³qª¾]</B> $discuz_user ¶×´Úµ¹§A¡C";
-		$money2 = $bank+$lixi+$user2bank[bank];
-		$message="´L·qªº«È¤á§A¦n¡G\n¥»¯¸·|­û $discuz_user ³q¹L»È¦æ¶×´Ú $bank ­Óª÷¹ôµ¹§A¡C\n";
-		$message.="§A²{¦bªº»È¦æ¦s´Ú¬°¡G ­ì¦³¡]$user2bank[bank]¡^+ §Q®§¡] $lixi ¡^+¶×´Ú¡] $bank ¡^= $money2 \n";
-		$message.="½Ğ±z¨ì»È¦æ®Ö¹ê¥H¤W«H®§¡I \n";
-		$message.="\n\n--==½×¾Â»È¦æ==--";
-		$db->query("INSERT INTO $table_pm (msgto, msgfrom, folder, new, subject, dateline, message)
-				VALUES('$changeuser', '$discuz_user', 'inbox', '1', '$subject', '$timestamp', '$message')");
-		$db->query("UPDATE $table_members SET newpm='1' WHERE username = '$changeuser'");
-		showmessage('Âà½ã§¹²¦¡A¦P®É»È¦æ¤w¸gµ¹¦¬´Ú¤Hµo°e¤F³qª¾¡C','bank.php?action=showroom');
-	}
-}elseif ($action=="showroom") {    //===============Àç·~¤jÆU==================     
-   $bankaction = "Àç·~¤jÆU";
+        $user2bank=$db->fetch_array($query);
+        $bank_tax =round($bank*$banksettings['changetax']);
+        $changecost =$bank+$bank_tax;
+        $yourbank = $userbank['bank']-$changecost;
+        if ($bank<1)  {
+                showmessage('é‡‘é¡éŒ¯èª¤ï¼æ‚¨çš„é‡‘é¡è‡³å°‘è¦ 1 å€‹é‡‘å¹£.');
+        }else if($bank>$changemoney) {
+                showmessage("é‡‘é¡éŒ¯èª¤ï¼è½‰è³¬ä»¥åï¼Œä½ çš„éŠ€è¡Œå­˜æ¬¾è‡³å°‘è¦ä¿ç•™".$banksettings['minsave']."!");
+        }else if($userbank['bank']-$changecost<$banksettings['minsave']) {
+                showmessage("é‡‘é¡éŒ¯èª¤ï¼å‰©ä¸‹çš„å­˜æ¬¾ä¸è¶³ä»¥æ”¯ä»˜ä½ çš„æ‰‹çºŒè²»!");
+        }else if($discuz_user==$changeuser) {
+                showmessage('å¹²å—å•Šï¼Œè‡ªå·±è½‰è³¬çµ¦è‡ªå·±ï¼');
+        }else if(!$user2bank[username]) {
+                showmessage('ç”¨æˆ¶åéŒ¯èª¤ï¼Œç•¶å‰è«–å£‡å…§æ²’æœ‰é€™å€‹äººï¼');
+        }
+        if (!submitcheck($submit)){
+                        $bankaction='è½‰è³¬åŒ¯æ¬¾';
+                        include template('bank_submit');
+                        exit;
+        }else{
+                $banklog = "$discuz_user\t$onlineip\t$bank\t$changeuser\t$timestamp\n";
+                @$fp = fopen($discuz_root.'./forumdata/bankchglog.php', 'a');
+                @flock($fp, 3);
+                @fwrite($fp, $banklog);
+                @fclose($fp);
+                $lixi=checklixi($userbank);
+                $query = $db->query("UPDATE $table_members SET bank=bank-$changecost+$lixi,savemt='$timestamp' WHERE username='$discuz_user'");
+                $lixi=checklixi($user2bank);
+                $query = $db->query("UPDATE $table_members SET bank=bank+$bank+$lixi,savemt='$timestamp' WHERE username='$changeuser'");
+                $subject="<B>[éŠ€è¡Œé€šçŸ¥]</B> $discuz_user åŒ¯æ¬¾çµ¦ä½ ã€‚";
+                $money2 = $bank+$lixi+$user2bank[bank];
+                $message="å°Šæ•¬çš„å®¢æˆ¶ä½ å¥½ï¼š\næœ¬ç«™æœƒå“¡ $discuz_user é€šééŠ€è¡ŒåŒ¯æ¬¾ $bank å€‹é‡‘å¹£çµ¦ä½ ã€‚\n";
+                $message.="ä½ ç¾åœ¨çš„éŠ€è¡Œå­˜æ¬¾ç‚ºï¼š åŸæœ‰ï¼ˆ$user2bank[bank]ï¼‰+ åˆ©æ¯ï¼ˆ $lixi ï¼‰+åŒ¯æ¬¾ï¼ˆ $bank ï¼‰= $money2 \n";
+                $message.="è«‹æ‚¨åˆ°éŠ€è¡Œæ ¸å¯¦ä»¥ä¸Šä¿¡æ¯ï¼ \n";
+                $message.="\n\n--==è«–å£‡éŠ€è¡Œ==--";
+                $db->query("INSERT INTO $table_pm (msgto, msgfrom, folder, new, subject, dateline, message)
+                                VALUES('$changeuser', '$discuz_user', 'inbox', '1', '$subject', '$timestamp', '$message')");
+                $db->query("UPDATE $table_members SET newpm='1' WHERE username = '$changeuser'");
+                showmessage('è½‰è³¬å®Œç•¢ï¼ŒåŒæ™‚éŠ€è¡Œå·²ç¶“çµ¦æ”¶æ¬¾äººç™¼é€äº†é€šçŸ¥ã€‚','bank.php?action=showroom');
+        }
+}elseif ($action=="showroom") {    //===============ç‡Ÿæ¥­å¤§å»³==================     
+   $bankaction = "ç‡Ÿæ¥­å¤§å»³";
    $userbankmoney= $userbank[bank];
    $usermoney= $userbank[money];
    $allmoney = $userbank[bank]+$userbank[money];
    $userbanklixi=checklixi($userbank);
-   if (!$userbanklixi) $userbanklixi="¤w¸g²Mºâ§¹²¦";
+   if (!$userbanklixi) $userbanklixi="å·²ç¶“æ¸…ç®—å®Œç•¢";
    $query = $db->query("SELECT COUNT(bank) AS banks FROM $table_members where bank>0"); 
    $allbankpeople=$db->result($query, 0);
    $query = $db->query("SELECT SUM(bank) AS banks FROM $table_members");
    $allbankmoney=$db->result($query, 0);
-	
-//Åã¥Ü¶K¤l¶R½æ±¡ªp
+        
+//é¡¯ç¤ºè²¼å­è²·è³£æƒ…æ³
    if ($banksettings['showpostpay']){
-	   $query = $db->query("SELECT count(*) As bcount,SUM(money) AS bmoney FROM $hacktable_postpay where username='$discuz_user'");
-	   $buypost=$db->fetch_array($query);
-	   $query = $db->query("SELECT count(*) As scount,SUM(money) AS smoney FROM $hacktable_postpay where author='$discuz_user'");
-	   $sellpost = $db->fetch_array($query);
-	   $buyandsell = $sellpost['smoney'] - $buypost['bmoney'];
-	   if ($buyandsell >0 ){
-			$buyandsell="<font color=green>".$buyandsell."</font>";
-	   }else{
-	      $buyandsell="<font color=red>".$buyandsell."</font>";
-	   }
-	}
-	include template('bank');
+           $query = $db->query("SELECT count(*) As bcount,SUM(money) AS bmoney FROM $hacktable_postpay where username='$discuz_user'");
+           $buypost=$db->fetch_array($query);
+           $query = $db->query("SELECT count(*) As scount,SUM(money) AS smoney FROM $hacktable_postpay where author='$discuz_user'");
+           $sellpost = $db->fetch_array($query);
+           $buyandsell = $sellpost['smoney'] - $buypost['bmoney'];
+           if ($buyandsell >0 ){
+                        $buyandsell="<font color=green>".$buyandsell."</font>";
+           }else{
+              $buyandsell="<font color=red>".$buyandsell."</font>";
+           }
+        }
+        include template('bank');
 }elseif ($action=="bankinfo") {
-   $bankaction= "°]´I¸ê°T"; 
+   $bankaction= "è²¡å¯Œè³‡è¨Š"; 
    $userbankmoney= $userbank[bank];
    $usermoney= $userbank[money];
    $allmoney = $userbank[bank]+$userbank[money];
-   $userbanklixi=checklixi($discuz_user)?checklixi($discuz_user):"¤w¸g²Mºâ§¹²¦";
+   $userbanklixi=checklixi($discuz_user)?checklixi($discuz_user):"å·²ç¶“æ¸…ç®—å®Œç•¢";
    $query = $db->query("SELECT COUNT(bank) AS banks FROM $table_members where bank>0"); 
    $allbankpeople=$db->result($query, 0);
    $query = $db->query("SELECT SUM(bank) AS banks FROM $table_members");
    $allbankmoney=$db->result($query, 0);
- //Åã¥Ü¶K¤l¶R½æ±¡ªp
+ //é¡¯ç¤ºè²¼å­è²·è³£æƒ…æ³
    if ($banksettings['showpostpay']){
-	   $query = $db->query("SELECT count(*) As bcount,SUM(money) AS bmoney FROM $hacktable_postpay where username='$discuz_user'");
-	   $buypost=$db->fetch_array($query);
-	   $query = $db->query("SELECT count(*) As scount,SUM(money) AS smoney FROM $hacktable_postpay where author='$discuz_user'");
-	   $sellpost = $db->fetch_array($query);
-	   $buyandsell = $sellpost['smoney'] - $buypost['bmoney'];
-	   if ($buyandsell >0 ){
-			$buyandsell="<font color=green>".$buyandsell."</font>";
-	   }else{
-	      $buyandsell="<font color=red>".$buyandsell."</font>";
-	   }
-   }//Åã¥Ü¶K¤l¶R½æ±¡ªpµ²§ô
+           $query = $db->query("SELECT count(*) As bcount,SUM(money) AS bmoney FROM $hacktable_postpay where username='$discuz_user'");
+           $buypost=$db->fetch_array($query);
+           $query = $db->query("SELECT count(*) As scount,SUM(money) AS smoney FROM $hacktable_postpay where author='$discuz_user'");
+           $sellpost = $db->fetch_array($query);
+           $buyandsell = $sellpost['smoney'] - $buypost['bmoney'];
+           if ($buyandsell >0 ){
+                        $buyandsell="<font color=green>".$buyandsell."</font>";
+           }else{
+              $buyandsell="<font color=red>".$buyandsell."</font>";
+           }
+   }//é¡¯ç¤ºè²¼å­è²·è³£æƒ…æ³çµæŸ
 
    $query = $db->query("SELECT username,money FROM $table_members where 1 ORDER BY money DESC Limit 10");
    while($total = $db->fetch_array($query)) {
-	$totalmoneylist .="<LI>".$total[username]."&nbsp;&nbsp;&nbsp;".$total['money'];	
+        $totalmoneylist .="<LI>".$total[username]."&nbsp;&nbsp;&nbsp;".$total['money'];        
    }
    $query = $db->query("SELECT username,bank FROM $table_members where 1 ORDER BY bank DESC Limit 10");
    while($total = $db->fetch_array($query)) {
-	$totalbanklist .="<LI>".$total[username]."&nbsp;&nbsp;&nbsp;".$total['bank'];	
+        $totalbanklist .="<LI>".$total[username]."&nbsp;&nbsp;&nbsp;".$total['bank'];        
    }
    $query = $db->query("SELECT username,(bank+money) as allmoney FROM $table_members where 1 ORDER BY (bank+money) DESC Limit 10");
    while($total = $db->fetch_array($query)) {
-	$totalalllist .="<LI>".$total[username]."&nbsp;&nbsp;&nbsp;".$total['allmoney'];	
+        $totalalllist .="<LI>".$total[username]."&nbsp;&nbsp;&nbsp;".$total['allmoney'];        
    }
    $userbankmoney= $userbank[bank];
    $usermoney= $userbank[money];
    $allmoney = $userbank[bank]+$userbank[money];
-   $userbanklixi=checklixi($discuz_user)?checklixi($discuz_user):"¤w¸g²Mºâ§¹²¦";
+   $userbanklixi=checklixi($discuz_user)?checklixi($discuz_user):"å·²ç¶“æ¸…ç®—å®Œç•¢";
    $query = $db->query("SELECT COUNT(*) AS count FROM $table_members where bank>'$userbankmoney'"); 
    $bankming=$db->result($query, 0) + 1;
    $query = $db->query("SELECT COUNT(*) AS count FROM $table_members where money>'$usermoney'"); 
    $moneyming=$db->result($query, 0) + 1;
    $query = $db->query("SELECT COUNT(*) AS count FROM $table_members where (bank+money)>'$allmoney'"); 
    $allming=$db->result($query, 0) + 1;
-	include template('bank');
+        include template('bank');
 }
 
 
 //########################## functions ##################
 
-function checklixi($userbank) {  //²Mºâ§Q®§
+function checklixi($userbank) {  //æ¸…ç®—åˆ©æ¯
    global $banksettings,$timestamp;
-	    $userbanklixi=0;
-	    $banktime = intval($userbank[savemt]);
-	    if ($banktime>0){
-		$presenttime=floor(($timestamp-$banktime)/86400);
-		if ($presenttime>0){
-		   $userbanklixi=floor($userbank[bank]*$presenttime*$banksettings['accrual']);
-		}
-	    }
+            $userbanklixi=0;
+            $banktime = intval($userbank[savemt]);
+            if ($banktime>0){
+                $presenttime=floor(($timestamp-$banktime)/86400);
+                if ($presenttime>0){
+                   $userbanklixi=floor($userbank[bank]*$presenttime*$banksettings['accrual']);
+                }
+            }
    return $userbanklixi;
 } 
 
