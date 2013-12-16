@@ -1,0 +1,91 @@
+{template header}
+
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center" style="table-layout: fixed"> 
+
+<tr><td class="nav" width="90%" nowrap>&nbsp;<a href="index.php">$bbname</a> &raquo; $payaction</td>
+
+<td align="right" width="10%"><a href="#bottom"><img src="{IMGDIR}/arrow_dw.gif" border="0" align="absmiddle"></a></td>        
+
+</tr></table>
+
+
+
+<!--{if $action=='pay'}-->
+
+<form method="post" action="postpay.php">
+
+<input type="hidden" name="action" value="pay">
+
+<input type="hidden" name="pid" value="$pid">
+
+<input type="hidden" name="sid" value="$sid">
+
+<input type="hidden" name="tid" value="$tid">
+
+<input type="hidden" name="page" value="$page">
+
+<input type="hidden" name="sellcount" value="$sellcount">
+
+<input type="hidden" name="money" value="$money">
+
+<table cellspacing="0" cellpadding="0" border="0" width="400" align="center">
+
+<tr><td bgcolor="{BORDERCOLOR}">
+
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+
+<tr class="header">
+
+<td colspan="2">付費確認</td>
+
+</tr>
+
+<tr>
+
+<td bgcolor="{ALTBG1}" width="21%">{lang username}:</td>
+
+<td bgcolor="{ALTBG2}">$discuz_userss  <span class="smalltxt">[<a href="logging.php?action=logout">{lang member_logout}</a>]</span></td>
+
+</tr>
+
+<tr>
+
+<td bgcolor="{ALTBG1}" width="21%">持有現金 :</td>
+
+<td bgcolor="{ALTBG2}">$userbank[money]</td>
+
+</tr>
+
+
+
+<tr>
+
+<td bgcolor="{ALTBG1}" width="21%">費用支付:</td>
+
+<td bgcolor="{ALTBG2}">$money</td>
+
+</tr>
+
+<tr>
+
+<td bgcolor="{ALTBG1}" width="21%">現金結餘:</td>
+
+<td bgcolor="{ALTBG2}">$usermoney
+
+</td>
+
+</tr>
+
+
+
+</table>
+
+</td></tr></table><br>
+
+<center><input type="submit" name="paysubmit" value="{lang submit}"></center>
+
+</form>
+
+<!--{/if}-->
+
+{template footer}

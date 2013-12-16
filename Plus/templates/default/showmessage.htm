@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}">
+<meta name="keywords" content="Discuz!,Discuz! Plus,Board,HKLCF,Plus,PHP,MySQL,FORUM">
+<meta name="generator" content="Discuz! Plus $version with Templates 1.0">
+<meta name="description" content="$bbname - Powered by Discuz! Plus $version">
+<meta name="MSSmartTagsPreventParsing" content="TRUE">
+<meta http-equiv="MSThemeCompatible" content="Yes">
+$url_redirect
+
+<title>$bbname$navtitle - powered by Discuz! Plus</title>
+{template css}
+<script language="JavaScript" src="include/common.js"></script>
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style='margin: 150px auto 0 auto;'>
+
+<table cellspacing="0" cellpadding="0" border="0" width="500" align="center">
+<tr><td bgcolor="{BORDERCOLOR}">
+
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr class="header"><td>$bbname {lang board_message}</td></tr>
+<tr><td bgcolor="{ALTBG2}" align="center">
+
+<table border="0" width="90%" cellspacing="0" cellpadding="0">
+<tr><td align="center" class="smalltxt">
+<br>$show_message
+
+<!--{if $url_forward}-->
+	<br><br><a href="$url_forward">{lang message_forward}</a>
+<!--{elseif stristr($show_message, '{lang return}')}-->
+	<br><br><a href="###" onclick="history.go(-1)">{lang message_go_back}</a>
+<!--{/if}-->
+
+<br><br>
+
+</td></tr></table>
+</td></tr></table>
+</td></tr></table>
+</div>
+{eval updatesession();}{eval discuz_output();}

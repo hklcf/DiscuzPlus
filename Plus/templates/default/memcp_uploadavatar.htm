@@ -1,0 +1,56 @@
+{template header}
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center" style="table-layout: fixed"> 
+<tr><td class="nav" width="90%" nowrap>&nbsp;<a href="index.php">$bbname</a> &raquo; {lang board_message}</td>
+<td align="right" width="10%"><a href="#bottom"><img src="{IMGDIR}/arrow_dw.gif" border="0" align="absmiddle"></a></td>        
+</tr></table><br>
+<table cellspacing="0" cellpadding="0" border="0" width="500" align="center">
+<tr>
+<td bgcolor="{BORDERCOLOR}">
+
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr class="header"><td>{lang memcp_avatar_upload}</td>
+</tr>
+<tr>
+<td bgcolor="{ALTBG2}"align="center"><br>
+<table width="95%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="300"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="300"><table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td><strong>{lang memcp_avatar_upload_note}</strong></td>
+</tr>
+<tr> 
+<td>{lang memcp_avatar_upload_tips}
+</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><br>
+<table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td><strong>{lang memcp_avatar_upload_location}</strong></td>
+</tr>
+<tr>
+<td>
+<form action="uploadavatar.php?action=uploadavatar" method="post" name="formavaup" id="formavaup" ENCTYPE= "multipart/form-data">
+<input name="upavatars" type="file" size="20">
+<input type="submit" name="submit" value="¤W¶Ç">
+</form></td>
+</tr>
+</table></td>
+</tr>
+</table></td>
+<td width="200"><div align="center">
+<img src="$avatar" border="1"></div></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<br><br>
+{template footer}

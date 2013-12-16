@@ -1,0 +1,73 @@
+{template header}
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center" style="table-layout: fixed"> 
+<tr><td class="nav" width="90%" align="left" nowrap>&nbsp;<a href="index.php">$bbname</a> &raquo; $navigation</td>
+<td align="right" width="10%">&nbsp;<a href="#bottom"><img src="{IMGDIR}/arrow_dw.gif" border="0" align="absmiddle"></a></td> </tr></table><br>
+
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+<tr><td bgcolor="{BORDERCOLOR}">
+
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr class="header">
+<td align=center>$navigation</td></tr>
+
+<tr>
+<td bgcolor="{ALTBG1}" align="center">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr><td width="100%" align=center>
+<script language=JavaScript1.2>
+function validate(theform) {
+		if (theform.link_name.value=="") {
+		alert("請填寫貴站名稱");
+		return false;
+		}
+		if (theform.link_website.value=="") {
+		alert("請填寫貴站網址");
+		return false;
+		}
+		if (theform.link_email.value=="") {
+		alert("請填寫你的 E-mail");
+		return false;
+		}
+		if (theform.link_about.value=="") {
+		alert("請填寫網站簡介");
+		return false;
+		}
+	return true;
+}
+</script>
+<form name=link_send action=link.php?action=link method=post onSubmit="return validate(this)">
+<table cellSpacing=0 borderColorDark=#0099cc cellPadding=0 width=100% borderColorLight=#000000 border=0>
+<tbody><tr><td colSpan=2>
+本 站 名 稱： $sitename<br>
+本 站 網 址： $siteurl<br>
+ Logo 網 址： $link[logo]<br><br>
+本 站 簡 介： <textarea onmouseover=this.focus() onfocus=this.select() name=link rows=1 cols="80">$link[about]</textarea><br><br>
+文字連結演示： <a href="$siteurl" title="$link[about]">$sitename</a><br><br>
+Logo連結演示： <img src="$link[logo]" border="0" alt="$link[about]"><br><br>
+<font color=#0099cc>■ </font><font color="red">在提交申請前，請務必首先做好本站連接，以便我們更快的建立好合作關係。</font></td></tr></table>
+
+<td width="100%" valign="top">
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}">
+	<tr><td colSpan=2 width=100%>
+	<font color=#ff7918>□ </font>貴 站 名 稱： 
+	<input value="" name=link_name size=50 style="color: #000000; background-color: #F3F3F3; border-style: solid; border-width: 1" onMouseOver ="this.style.backgroundColor='#F8F8F8'" onMouseOut ="this.style.backgroundColor='#F3F3F3'"></td>
+	<tr><td colSpan=2 width=100%>
+	<font color=#ff7918>□ </font>貴 站 網 址： 
+	<input value="http://" name=link_website size=50 style="color: #000000; background-color: #F3F3F3; border-style: solid; border-width: 1" onMouseOver ="this.style.backgroundColor='#F8F8F8'" onMouseOut ="this.style.backgroundColor='#F3F3F3'"></td>
+	<tr><td colSpan=2 width=100%>
+	<font color=#ff7918>□ </font> Logo 網 址： 
+	<input value="http://" name=link_logo size=50 style="color: #000000; background-color: #F3F3F3; border-style: solid; border-width: 1" onMouseOver ="this.style.backgroundColor='#F8F8F8'" onMouseOut ="this.style.backgroundColor='#F3F3F3'"></td></tr>
+	<tr><td colSpan=2 width=100%>
+	<font color=#ff7918>□ </font>你的 E-mail： 
+	<input value="" name=link_email size=50 style="color: #000000; background-color: #F3F3F3; border-style: solid; border-width: 1" onMouseOver ="this.style.backgroundColor='#F8F8F8'" onMouseOut ="this.style.backgroundColor='#F3F3F3'"></td></tr>
+	<tr><td colSpan=2 width=100%>
+	<font color=#ff7918>□ </font>網 站 簡 介： 
+	<input value="" name=link_about size=50 style="color: #000000; background-color: #F3F3F3; border-style: solid; border-width: 1" onMouseOver ="this.style.backgroundColor='#F8F8F8'" onMouseOut ="this.style.backgroundColor='#F3F3F3'"></td></tr></tbody></table>
+	<table cellSpacing=0 cellPadding=0 width=100% borderColorLight=#000000 border=0>
+		<tbody>
+	<tr><br><input type=submit value='提 交 申 請' style="width: 270; height: 30"; name=button></td></tr>
+		</tbody></table></form></td></tr></table>
+	<tr class="category">
+		<td align="center">[聯盟申請 v$link[version] By <a href="http://discuz.hklcf.com">HKLCF</a>]</td>
+	</tr></td></tr></table></td></tr></table>
+{template footer}

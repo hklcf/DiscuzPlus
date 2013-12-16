@@ -1,0 +1,37 @@
+<br><table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center" bgcolor="{BORDERCOLOR}"><tr><td>
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%" style="table-layout: fixed; word-wrap: break-word">
+<tr class="header">
+<td width="25%" align="center">其他論壇最新貼</td>
+<td width="25%" align="center">本論壇最新發表主題</td>
+<td width="25%" align="center">本論壇瀏覽最多主題</td>
+<td width="25%" align="center">本論壇回復最多主題</td>
+</tr>
+<tr>
+<td bgcolor="{ALTBG2}" onMouseOver ="this.style.backgroundColor='{ALTBG1}'" onMouseOut ="this.style.backgroundColor='{ALTBG2}'">
+<!--{loop $hack_others_threadlist $thread}-->
+<a href="viewthread.php?tid=$thread[tid]" title="$thread[subject],作者$thread[author]，瀏覽$thread[views]，回復$thread[replies]">$thread[view_subject]</a>
+                <!--{if $thread[creditsrequire]}--> - [{lang credit_title}<span class="bold">$thread[creditsrequire]</span>{lang credit_unit}] <!--{/if}-->
+                $thread[multipage] <br>
+<!--{/loop}-->
+</td>
+<td bgcolor="{ALTBG2}" onMouseOver ="this.style.backgroundColor='{ALTBG1}'" onMouseOut ="this.style.backgroundColor='{ALTBG2}'">
+<!--{loop $hack_newthreads_threadlist $thread}-->
+<a href="viewthread.php?tid=$thread[tid]" title="$thread[subject],作者$thread[author]，瀏覽$thread[views]，回復$thread[replies]">$thread[view_subject]</a>
+                <!--{if $thread[creditsrequire]}--> - [{lang credit_title}<span class="bold">$thread[creditsrequire]</span>{lang credit_unit}] <!--{/if}-->
+                $thread[multipage] <br>
+<!--{/loop}-->
+</td>
+<td bgcolor="{ALTBG2}" onMouseOver ="this.style.backgroundColor='{ALTBG1}'" onMouseOut ="this.style.backgroundColor='{ALTBG2}'">
+<!--{loop $hack_hotviews_threadlist $thread}-->
+<a href="viewthread.php?tid=$thread[tid]" title="$thread[subject],作者$thread[author]，瀏覽$thread[views]，回復$thread[replies]">$thread[view_subject]</a>
+                <!--{if $thread[creditsrequire]}--> - [{lang credit_title}<span class="bold">$thread[creditsrequire]</span>{lang credit_unit}] <!--{/if}-->
+                $thread[multipage] <br>
+<!--{/loop}-->
+</td>
+<td bgcolor="{ALTBG2}" onMouseOver ="this.style.backgroundColor='{ALTBG1}'" onMouseOut ="this.style.backgroundColor='{ALTBG2}'">
+<!--{loop $hack_hotreplies_threadlist $thread}-->
+<a href="viewthread.php?tid=$thread[tid]" title="$thread[subject],作者$thread[author]，瀏覽$thread[views]，回復$thread[replies]">$thread[view_subject]</a>
+                <!--{if $thread[creditsrequire]}--> - [{lang credit_title}<span class="bold">$thread[creditsrequire]</span>{lang credit_unit}] <!--{/if}-->
+                $thread[multipage] <br>
+<!--{/loop}-->
+</td></tr></table></td></tr></table>

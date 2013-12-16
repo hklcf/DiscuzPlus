@@ -1,0 +1,34 @@
+{template header}
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center" style="table-layout: fixed"> 
+<tr><td class="nav" width="90%" nowrap>&nbsp;<a href="index.php">$bbname</a> &raquo; {lang stats}</td>
+<td align="right" width="10%"><a href="#bottom"><img src="{IMGDIR}/arrow_dw.gif" border="0" align="absmiddle"></a></td>        
+</tr></table><br>
+
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr><td class="header">{lang stats}
+</td></tr><tr bgcolor="{ALTBG1}"><td>
+
+<br><table cellspacing="0" cellpadding="0" border="0" width="85%" align="center">
+<tr><td bgcolor="{BORDERCOLOR}"><table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr bgcolor="{ALTBG2}"><td align="center" class="smalltxt">
+<a href="stats.php">[ {lang stats_main} ]</a> &nbsp; <a href="stats.php?type=week">[ {lang stats_week} ]</a> &nbsp; 
+<a href="stats.php?type=hour">[ {lang stats_hour} ]</a> &nbsp; <a href="stats.php?type=agent">[ {lang stats_agent} ]</a> &nbsp; 
+<a href="stats.php?type=threads">[ {lang stats_threads} ]</a> &nbsp; <a href="stats.php?type=member">[ {lang stats_members} ]</a></td></tr>
+</table></td></tr></table><br>
+
+<table cellspacing="0" cellpadding="0" border="0" width="85%" align="center">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr><td bgcolor="{ALTBG1}"><table border="0" cellspacing="0" cellpadding="{TABLESPACE}" width="98%" align="center">
+<tr class="smalltxt">
+<td align="center" bgcolor="{ALTBG2}" width="23%" colspan="2" class="bold">{lang credit_title} {lang stats_rank}</td><td width="2%"></td>
+<td align="center" bgcolor="{ALTBG2}" width="23%" colspan="2" class="bold">{lang stats_posts} {lang stats_rank}</td><td width="2%"></td>
+<td align="center" bgcolor="{ALTBG2}" width="23%" colspan="2" class="bold">{lang stats_posts_thismonth} {lang stats_rank}</td><td width="2%"></td>
+<td align="center" bgcolor="{ALTBG2}" width="23%" colspan="2" class="bold">{lang stats_posts_today} {lang stats_rank}</td></tr>
+$members
+</td></table></td></tr></table></td></tr></table><br>
+
+</td></tr></table></td></tr></table>
+{template footer}

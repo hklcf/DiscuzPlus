@@ -1,0 +1,114 @@
+{template header}
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center" style="table-layout: fixed"> 
+<tr><td class="nav" width="90%" nowrap>&nbsp;<a href="index.php">$bbname</a> $navigation &raquo; {lang post_newreply}</td>
+<td align="right" width="10%"><a href="#bottom"><img src="{IMGDIR}/arrow_dw.gif" border="0" align="absmiddle"></a></td>        
+</tr></table><br>
+
+<script language="JavaScript">
+var postmaxchars = $maxpostsize;
+var isadmin = "$isadmin";
+function checklength(theform) {
+        if (postmaxchars != 0) { message = "{lang board_allowed}: $maxpostsize {lang bytes}"; }
+        else { message = ""; }
+        alert("\n{lang post_currlength}: "+theform.message.value.length+" {lang bytes}\n\n"+message);
+}
+function validate(theform) {
+        if (theform.message.value == "" && theform.subject.value == "") {
+                alert("{lang post_subject_and_message_isnull}");
+                return false; }
+        if (postmaxchars != 0 && isadmin != 1) {
+                if (theform.message.value.length > $maxpostsize) {
+                        alert("{lang post_message_toolong}\n\n{lang post_currlength}: "+theform.message.value.length+" {lang bytes}\n{lang board_allowed}: $maxpostsize {lang bytes}");
+                        return false; }
+                else { return true; }
+        } else { return true; }
+}
+</script>
+<!--{if isset($previewpost)}-->
+	{template post_preview}
+<!--{/if}-->
+<form method="post" name="input" action="post.php?action=reply&fid=$fid&tid=$tid" $enctype onSubmit="return validate(this)">
+<input type="hidden" name="replysubmit" value="submit">
+
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+<tr><td bgcolor="{BORDERCOLOR}">
+
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr>
+<td colspan="2" class="header">{lang post_newreply}</td>
+</tr>
+
+{template post_logging}
+
+<tr>
+<td bgcolor="{ALTBG1}" width="20%">{lang subject}:</td>
+<td bgcolor="{ALTBG2}" class="smalltxt"><select onchange="document.input.subject.focus(); document.input.subject.value = this.options[this.selectedIndex].value + document.input.subject.value;"><option value="" selected>請選擇：標題</option><OPTION value=[原創]>[原創]</OPTION><OPTION value=[轉帖]>[轉帖]</OPTION><OPTION value=[灌水]>[灌水]</OPTION><OPTION value=[教學]>[教學]</OPTION><OPTION value=[討論]>[討論]</OPTION><OPTION value=[警告]>[警告]</OPTION><OPTION value=[求助]>[求助]</OPTION><OPTION value=[推薦]>[推薦]</OPTION><OPTION value=[公告]>[公告]</OPTION><OPTION value=[注意]>[注意]</OPTION><OPTION value=[貼圖]>[貼圖]</OPTION><OPTION value=[建議]>[建議]</OPTION><OPTION value=[下載]>[下載]</OPTION><OPTION value=[分享]>[分享]</OPTION></select><input type="text" name="subject" size="45" value="$subject" tabindex="3">&nbsp;&nbsp;(可選)</td>
+</tr>
+<tr><td bgcolor="{ALTBG1}">{lang icon}:</td><td bgcolor="{ALTBG2}">$icons</td></tr>
+{template post_bbinsert}
+<tr>
+<td bgcolor="{ALTBG1}" valign="top">{lang message} <a href="###" onclick="checklength(document.input)" class="smalltxt">[{lang post_check_length}]</a>:<br><br>
+<span class="smalltxt">
+html {lang is} $allowhtml<br>
+<a href="faq.php?page=messages#6" target="_blank">{lang post_smilies}</a> {lang is} $allowsmilies<br>
+<a href="faq.php?page=misc#1" target="_blank">{lang post_discuzcode}</a> {lang is} $allowbbcode<br>
+{lang post_imgcode} {lang is} $allowimgcode
+</span><br><br><br><br>
+{template post_sminsert}
+</td>
+
+<td bgcolor="{ALTBG2}" class="smalltxt">
+<input type=checkbox name=issell value=1>出售此文章，會員必須付款後方可查看內容，售價 $ <input type=text maxlength=5 size=4 class='text' name=price><br>
+<textarea rows="18" cols="85" name="message" tabindex="4" onSelect="javascript: storeCaret(this);" onClick="javascript: storeCaret(this);" onKeyUp="javascript: storeCaret(this);" onKeyDown="javascript: ctlent();">$message</textarea>
+<br><br>
+<input type="checkbox" name="parseurloff" value="1"> {lang disable} {lang post_parseurl}<br>
+<input type="checkbox" name="smileyoff" value="1" $smileyoffcheck> {lang disable} <a href="faq.php?page=messages#6" target="_blank">{lang post_smilies}</a><br>
+<input type="checkbox" name="bbcodeoff" value="1" $codeoffcheck> {lang disable} <a href="faq.php?page=misc#1" target="_blank">{lang post_discuzcode}</a><br>
+<input type="checkbox" name="usesig" value="1" $usesigcheck> {lang post_show_sig}<br>
+<input type="checkbox" name="emailnotify" value="1"> {lang post_email_notify}
+</td> 
+</tr>
+
+<!--{if $allowpostattach}-->
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang attachment} <span class="smalltxt">({lang lower_than} $maxattachsize_kb kb)</span>:</td>
+	<td bgcolor="{ALTBG2}" class="smalltxt">
+	<!--{if $allowsetattachperm}-->{lang require} {lang credit_title} <input type="text" name="attachperm" value="0" size="5">&nbsp;<!--{/if}-->
+	<input type="file" name="attach" size="20">
+	<!--{if $attachextensions}--><br><br>{lang attachment_allow_exts}:$attachextensions<!--{/if}--></td>
+	</tr>
+<!--{/if}-->
+
+</table>
+</td></tr></table><br>
+<center><input type="submit" name="replysubmit" value="{lang post_newreply}" tabindex="5">
+<input type="submit" name="previewpost" value="{lang post_previewpost}" tabindex="6">
+</center>
+</form>
+
+<br>
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+<tr><td bgcolor="{BORDERCOLOR}">
+
+<table border="0" cellspacing="1" cellpadding="{TABLESPACE}" width="100%">
+<tr class="header">
+<td colspan="2">{lang post_thread_review}</td>
+</tr>
+
+<!--{if $thread['replies'] > $ppp}-->
+	<tr bgcolor="{ALTBG1}"><td colspan="2" valign="top" width="20%">{lang post_replies_toolong}</td></tr>
+<!--{else}-->
+	<!--{loop $postlist $post}-->
+		<tr bgcolor="$post[thisbg]">
+		<td rowspan="2" valign="top" width="20%"><span class="bold">$post[author]</span><br><br></td><td class="smalltxt">
+		<!--{if $post[icon]}--><img src="{SMDIR}/$post[icon]" align="absmiddle"><!--{/if}-->
+		&nbsp;{lang poston} $post[dateline]</td></tr>
+		<tr bgcolor="$post[thisbg]"><td>
+		<table height="100%" width="100%" border="0" cellspacing="0" cellpadding="0" style="table-layout: fixed; word-wrap: break-word">
+		<tr><td><p>$post[message]</p><br></td></tr></table></td></tr>
+	<!--{/loop}-->
+<!--{/if}-->
+
+
+</table></td></tr></table>
+{template footer}

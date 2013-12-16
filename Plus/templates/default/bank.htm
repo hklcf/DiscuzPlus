@@ -1,0 +1,194 @@
+{template header}
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center" style="table-layout: fixed"> 
+<tr><td class="nav" width="90%" nowrap>&nbsp;<a href="index.php">$bbname</a> &raquo; <a href="bank.php">論壇銀行</a> &raquo; $bankaction</td>
+<td align="right" width="10%"><a href="#bottom"><img src="{IMGDIR}/arrow_dw.gif" border="0" align="absmiddle"></a></td>        
+</tr></table>
+<br><table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+<tr><td nowrap valign="top" width="150">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%" style="table-layout: fixed">
+<tr class="header"><td align="center">你的個人資料</td></tr>
+<tr><td bgcolor="{ALTBG1}" align="center">
+$userbank['avatar']<br><br></td></tr>
+<tr bgcolor="{ALTBG1}">
+<td align="left" width="100%">
+會員名稱: $discuz_user<br>
+擁有積分: $userbank[credit]<br>
+現金資產: $usermoney<br>
+存款資產: $userbankmoney<br>
+資產總和: $allmoney<br>
+</td></tr></table>
+</td></tr></table>	
+<br>
+
+<!--{if $banksettings['showpostpay']}-->
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%" style="table-layout: fixed">
+<tr class="header"><td align="center">貼子交易收支</td></tr>
+<tr bgcolor="{ALTBG1}">
+<td align="left" width="100%"><br>
+買貼次數: $buypost['bcount']<br>
+買貼付款: $buypost['bmoney']<br><hr size=1 noshadow>
+賣貼次數: $sellpost['scount']<br>
+賣貼收益: $sellpost['smoney']<br><hr size=1 noshadow>
+交易平衡: $buyandsell<br><br>
+</td></tr></table>
+</td></tr></table><br>	
+<!--{/if}-->
+
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%" style="table-layout: fixed">
+<tr class="header"><td align="center">現任行長</td></tr>
+<tr><td bgcolor="{ALTBG1}" align="center">
+<a title="查看$master[username]個人資料" href="./viewpro.php?username=$master[username]"><IMG SRC=$master['avatar'] border=0></a><br><br></td></tr>
+<tr bgcolor="{ALTBG1}">
+<td align="left" width="100%">
+行長名稱: $master[username]<br>
+擁有積分: $master[credit]<br>
+現金資產: $master[money]<br>
+存款資產: $master[bank]<br>
+資產總和: $masterall<br>
+</td></tr></table>
+</td></tr></table> 
+
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%" style="table-layout: fixed">
+<tr class="header"><td align="center">銀行程序資訊</td></tr>
+<tr bgcolor="{ALTBG1}">
+<td align="left" width="100%">
+Program:&nbsp;論壇銀行<br>
+Author:&nbsp;<font color=green>Cnteacher</font><br>
+Version:&nbsp;$banksettings['version']<br>
+Modified:&nbsp;2004/08/16<br>
+</td></tr></table>
+</td></tr></table>	
+<BR><BR>
+</td>
+	<td width="10"><img src="{imagesfolder}/clear.gif" width="10" height="1" border="0" alt=""></td>
+	<td width="100%" valign="top">
+
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr class="header"><td align="center">銀行資訊</td></tr>
+<tr><td bgcolor="{ALTBG1}" align="left" width="100%">
+銀行資產: <font color=red>$allbankmoney</font> &nbsp;&nbsp;|&nbsp;&nbsp; 客戶總數: <font color=red>$allbankpeople</font> &nbsp;&nbsp;|&nbsp;&nbsp; 日利息: <font color=red>$accrnum% </font> &nbsp;&nbsp;|&nbsp;&nbsp;<a href="bank.php">營業大廳</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="bank.php?action=bankinfo">財富資訊</a>
+</td></tr></table>
+</td></tr></table><br>
+<!--{if $action==showroom}-->
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr class="header"><td align="center">論壇銀行營業大廳</td></tr>
+<tr align="center"><td bgcolor="{ALTBG1}" align="left" width="100%">活期儲蓄</tr>
+<tr align="center">
+<td bgcolor="{ALTBG2}" align="right" width="100%">
+<table cellspacing="0" cellpadding="4" border="0" width="95%"><tr><form action="bank.php"  name="name" method="post" >
+<input type="hidden" name="action" value="save">
+<td>
+存款： <input type="text" size="20" name="actionmoney" value="" > <input type="submit" name=banksubmit value="存款" > <input type="reset" value="重置" class="bginput" name="reset"> 你的現金為：<font color=red>$usermoney</font> $banksettings['moneyname']</td></tr></form>
+<tr><form action="bank.php"  name="name" method="post"><input type="hidden" name="action" value="load">
+<td>
+取款： <input type="text" size="20" name="actionmoney" value="" > <input type="submit" name="banksubmit"  value="取款" > <input type="reset" value="重置"  name="reset"> 你的存款為：<font color=red>$userbankmoney</font> $banksettings['moneyname'] </td></form></tr>
+</td></tr>
+<tr><form action="bank.php" name="name" method="post"><input type="hidden" name="action" value="lixi">
+<td>
+利息： <input type="text" size="20" name="actionmoney" value="$userbanklixi" readonly> <input type="submit" name="banksubmit"  value="手工清算" >&nbsp存款、取款的時候會<font color=red>自動清算</font>存入銀行。</td></form></tr>
+</td></tr>
+</table></td></tr>
+<tr align="center">
+<td bgcolor="{ALTBG1}" align="left" width="100%">轉帳匯款 (手續費：$changetaxnum %)
+</tr>
+<tr align="center">
+</td>
+<td bgcolor="{ALTBG2}" align="center" width="100%">
+<!--{if $banksettings[allowchange] || $isadmin }-->
+<table cellspacing="0" cellpadding="4" border="0" width="95%"><tr>
+<form action="bank.php"  name="name" method="post"><input type="hidden" name="action" value="change">
+<td>
+會員： <input type="text" size="20" name="changeuser" value="" > <br>
+金額： <input type="text" size="20" name="actionmoney" value="" > <input type="submit" name="banksubmit" value="轉帳" > <input type="reset" value="重置"  name="reset">你最多可以轉賬： $changemoney 個$banksettings['moneyname']給其他會員。
+</td></form></tr></table>
+<!--{else}-->
+<font color=blue>銀行轉賬暫停辦理。</font>
+<!--{/if}-->
+</td></tr>
+
+<tr align="center">
+<td bgcolor="{ALTBG1}" align="left" width="100%">積分買賣 (手續費：$selltaxnum %)
+</td></tr>
+<tr align="center">
+<td bgcolor="{ALTBG2}" align="center" width="100%">
+
+<!--{if $banksettings[allowsell] || $isadmin }-->
+<table cellspacing="0" cellpadding="4" border="0" width="95%">
+<tr><form action="bank.php"  name="name" method="post" >
+<input type="hidden" name="action" value="buy">
+<td>
+買入： <input type="text" size="20" name="actionmoney" value="" > <input type="submit" name="banksubmit" value="買入積分" >  今日匯率：<font color=red>買入1個積分需要花費 $banksettings['buy'] $banksettings['moneyname']</font></td></tr></form>
+<tr><form action="bank.php"  name="name" method="post"><input type="hidden" name="action" value="sell">
+<td>
+賣出： <input type="text" size="20" name="actionmoney" value="" > <input type="submit" name="banksubmit" value="賣出積分" > 今日匯率：<font color=red>賣出1個積分可以兌換成 $banksettings['sell'] $banksettings['moneyname']</font> </td></form></tr>
+</td></tr>
+</table>
+<!--{else}-->
+<font color=blue>銀行積分買賣暫停辦理。</font>
+<!--{/if}-->
+</table></table></td>
+<!--{/if}-->
+<!--{if $action==bankinfo}-->
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+
+<td nowrap valign="top" width="33%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr><td class="header" align="center" width="100%">銀行存款排行</td></tr>
+<tr>
+	<td bgcolor="{ALTBG1}" align="left" width="100%" valign=top><BR>
+	<OL>
+		$totalbanklist
+	</OL></td></tr>
+<tr><td  bgcolor="{ALTBG1}" align="center" width="100%" >你的排名:$bankming</td>
+</tr></table></table></td>
+
+<td width="10"><img src="{imagesfolder}/clear.gif" width="10" height="1" border="0" alt=""></td>
+
+<td nowrap valign="top" width="33%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr><td class="header" align="center" width="100%">論壇現金排行</td>
+</tr>
+<tr><td bgcolor="{ALTBG1}" align="left" width="100%" valign=top><BR>
+	<OL>
+		$totalmoneylist
+	</OL></td></tr>
+<tr><td bgcolor="{ALTBG1}" align="center" width="100%" >你的排名:$moneyming</td>
+</tr></table></table></td>
+
+<td width="10"><img src="{imagesfolder}/clear.gif" width="10" height="1" border="0" alt=""></td>
+
+<td nowrap valign="top" width="33%">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr>
+	<td class="header" align="center" width="100%">論壇富豪排行</td>
+</tr>
+<tr>
+	<td bgcolor="{ALTBG1}" align="left" width="100%" valign=top><br>
+	<OL>
+		$totalalllist
+	</OL></td></tr>
+<tr>
+	<td bgcolor="{ALTBG1}" align="center" width="100%" >你的排名:$allming</td>
+</tr></table></table></td></table>
+<!--{/if}-->
+</td></tr></table>
+{template footer}

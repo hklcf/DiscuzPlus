@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>$bbname - Powered by Discuz! Board</title>
+<style type="text/css">
+body,table {font-size: {FONTSIZE}; font-family: {FONT} }
+</style>
+</head>
+
+<body leftmargin="80">
+<script language="JavaScript">
+function print(){
+        if (document.layers) {
+                window.print() ;  
+        } else {
+                var WebBrowser = '<OBJECT ID="WebBrowser1" WIDTH=0 HEIGHT=0 CLASSID="CLSID:8856F961-340A-11D0-A96B-00C04FD705A2"></OBJECT>';
+                document.body.insertAdjacentHTML('beforeEnd', WebBrowser);
+                WebBrowser1.ExecWB(6, 2);
+                WebBrowser1.outerHTML = '';
+        }
+}
+</script>
+<img src="{IMGDIR}/{BOARDIMG}" alt="Board logo" border="0"><br><br>
+<b>{lang subject}: </b>$thread[subject] <a href="###" onclick="print();">[{lang thread_print}]</a></span><br>
+
+<!--{loop $postlist $post}-->
+	<hr noshade size="2" width="100%" color="#808080">
+	<b>{lang author}: </b>$post[author] &nbsp; &nbsp; <b>{lang time}: </b>$post[dateline]
+	<!--{if $post['subject']}--> &nbsp; &nbsp; <b>{lang subject}: </b>$post[subject]<br><!--{/if}-->
+	<br>$post[message]
+	<!--{if $post['aaid']}-->
+		<br>$post[attachicon]&nbsp;
+		<!--{if $post['attachimg'] == 0}-->
+			{lang attachment}: $post[filename] ($post[attachsize]) / {lang attach_download_count} $post[downloads]<br>URL {$boardurl}attachment.php?aid=$post[aid]
+		<!--{elseif $post['attachimg'] == 1}-->
+			{lang attach_img} &nbsp; URL {$boardurl}attachment.php?aid=$post[aid]<br><br><a href="$attachurl/$post[attachment]" target="_blank"><img src="$attachurl/$post[attachment]" border="0" alt="{lang click_open_newwindow}" onload="if(this.width>screen.width-333) this.width=screen.width-333"></a>
+		<!--{/if}-->
+	<!--{/if}-->
+<!--{/loop}-->
+
+<br><br><br><br><hr noshade size="2" width="100%" color="{BORDERCOLOR}">
+<table cellspacing="0" cellpadding="0" border="0" width="95%" align="center">
+<tr><td>{lang welcometo} $bbname ($boardurl)</td>
+<td align="right">
+Powered by Discuz! $version</td></tr></table>
+
+</body>
+</html>

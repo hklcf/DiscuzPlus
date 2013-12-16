@@ -1,0 +1,48 @@
+{template header}
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="{TABLEWIDTH}" align="center" bgcolor="{ALTBG1}"> 
+<tr><td class="nav" width="90%" nowrap><a href="index.php">$bbname</a> &raquo; $navigation</td>
+<td align="right" width="10%"><a href="#bottom"><img src="{IMGDIR}/arrow_dw.gif" border="0" align="absmiddle"></a></td>
+</tr></table>
+
+<center>
+<fieldset style='width: 80%;'><legend align="center"><strong>管 理 組 別</strong></legend>
+ &raquo; [ <a href="disadmin.php">All</a> ] | [ <a href="disadmin.php?type=Admin">Admin</a> ] | [ <a href="disadmin.php?type=SuperMod">SuperMod</a> ] | [ <a href="disadmin.php?type=Moderator">Moderator</a> ] | [ <a href="member.php?action=markread">更新上次時間</a> ]
+</fieldset>
+<br><br>
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="98%">
+<tr class="header"><td width="18%">管理者 (共有 <b>$modsno</b> 人)</td><td class="bold">個人資料
+</tr></table>
+
+<!--{loop $modslist $mods}-->
+<table border="1" width="98%" cellspacing="1" bordercolorlight="#000000" cellpadding="2" bgcolor="$mods[thisbg]">
+<tr><td width="18%" valign="top"><center>
+	<!--{if $mods['username'] == 'Guest'}-->
+		{lang guest}<br>{lang unregistered}
+	<!--{elseif !$mods['username']}-->
+		$mods[username]<br>{lang member_deleted}
+	<!--{else}-->
+		<span style="filter: glow(color=blue,strength=3); height:10px; color:white; padding:1px;"><font style="font-size: 12pt"><b>$mods[username]</b></font></span>
+		<br>$mods[status]<br><!--{/if}-->
+	<!--{if $mods['avatar']}-->$mods[avatar]<br><!--{else}-->
+		<!--{/if}-->
+		$mods[customstatus]<br></center>
+<td valign="top">
+$mods[stars]<br>
+{lang credit_title}：$mods[credit]<br>
+{lang postnum}：$mods[postnum]<br>
+<!--{if $mods[location]}-->{lang location} $mods[location]<br><!--{/if}-->
+註冊：$mods[regdate]<br>
+上次：$mods[lastvisit]<br>
+記錄：<!--{if $mods[missdays] == 0}-->沒有缺席<!--{elseif $mods[missdays] > 0}--><b>缺席了 $mods[missdays] 天</b><!--{/if}-->
+$mods[forum_name]
+<hr color="#000000" noshade width="100%" size="1">
+		<a href="viewpro.php?username=$mods[authorenc]"><img src="{IMGDIR}/profile.gif" border="0" alt="{lang view_profile}"></a>&nbsp;
+		<!--{if $mods[showemail]}--><a href="mailto:$mods[email]"><img src="{IMGDIR}/email.gif" border="0" alt="{lang send_mail}"></a>&nbsp;<!--{/if}-->
+		<!--{if $mods[site]}--><a href="$mods[site]" target="_blank"><img src="{IMGDIR}/site.gif" border="0" alt="{lang visit_home}"></a>&nbsp;<!--{/if}-->
+		<a href="search.php?srchuname=$mods[authorenc]&srchfid=all&srchfrom=0&searchsubmit=yes&orderby=dateline"><img src="{IMGDIR}/find.gif" border="0" alt="{lang search_member_posts}"></a>&nbsp;
+		<a href="pm.php?action=send&username=$mods[authorenc]" target="_blank"><img src="{IMGDIR}/pm.gif" border="0" alt="{lang send_pm}"></a>
+</td></tr></table>
+<p>
+<!--{/loop}-->
+
+{template footer}

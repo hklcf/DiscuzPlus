@@ -1,0 +1,69 @@
+{template header}
+<!-- Hack By 超煩 -->
+<script language="JavaScript">
+function validate(theform) {
+        if (theform.cmbmessage.value == "") {
+                alert("您必需填寫清楚評分原因");
+                return false; }
+        theform.topicsubmit.disabled = true;
+        return true;
+}
+</script>
+<!-- Hack End -->
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center" style="table-layout: fixed">
+<tr><td class="nav" width="90%" nowrap>&nbsp;<a href="index.php">$bbname</a> $navigation &raquo; {lang thread_rate}</td>
+<td align="right" width="10%"><a href="#bottom"><img src="{IMGDIR}/arrow_dw.gif" border="0" align="absmiddle"></a></td>
+</tr></table><br>
+<form method="post" name="input" action="misc.php?action=karma" onSubmit="return validate(this)">
+<input type="hidden" name="karmasubmit" value="submit">
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr class="header">
+<td colspan="2">{lang thread_rate}</td>
+</tr>
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">{lang username}:</td>
+<td bgcolor="{ALTBG2}">$discuz_userss  <span class="smalltxt">[<a href="logging.php?action=logout">{lang member_logout}</a>]</span></td>
+</tr>
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">{lang author}:</td>
+<td bgcolor="{ALTBG2}"><a href="viewpro.php?username=$encodename">$username</a></td>
+</tr>
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">{lang thread_rating}:</td>
+<td bgcolor="{ALTBG2}">{lang credit_title} $score {lang credit_unit}</td>
+</tr>
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">{lang subject}:</td>
+<td bgcolor="{ALTBG2}"><a href="viewthread.php?tid=$tid">$thread[subject]</a></td>
+</tr>
+<!-- Hack By 超煩 -->
+<tr><td bgcolor="{ALTBG1}">評分原因<br><br><font color = "red">必需填寫清楚評分原因</font></td>
+<td align="left" bgcolor="{ALTBG2}"><select onchange="document.input.cmbmessage.focus(); document.input.cmbmessage.value = document.input.cmbmessage.value + this.options[this.selectedIndex].value;">
+<option value="" selected>請選擇處罰原因</option>
+              <OPTION value=[處罰原因：灌水-你在論壇裏連續的惡意灌水！]>你在論壇裏連續的惡意灌水！</OPTION> 
+              <OPTION value=[處罰原因：灌水-你連續在版塊裏開無意義的主題！]>你連續在版塊裏開無意義的主題！</OPTION> 
+              <OPTION value=[處罰原因：灌水-你發貼漫罵或侮辱其他會員！]>你發貼漫罵或侮辱其他會員！</OPTION> 
+              <OPTION value=[處罰原因：灌水-你的回貼直接COPY了別的會員的留言！]>你的回貼直接COPY了別的會員的留言！</OPTION> 
+              <OPTION value=[處罰原因：灌水-你連續在同一貼裏大量回帖！]>你連續在同一貼裏大量回帖！</OPTION> 
+              <OPTION value=[處罰原因：違規-你多次沒有按照規定的要求貼文！]>你多次沒有按照規定的要求貼文！</OPTION> 
+</select>
+<select onchange="document.input.cmbmessage.focus(); document.input.cmbmessage.value = document.input.cmbmessage.value + this.options[this.selectedIndex].value;">
+<option value="" selected>請選擇獎勵原因</option>
+              <OPTION value=[獎勵原因：發言-你的發言非常精彩，請再接再厲！]>你的發言非常精彩，請再接再厲！</OPTION> 
+              <OPTION value=[獎勵原因：發言-感謝你為論壇的改進提出了很好的建議！]>感謝你為論壇的改進提出了很好的建議！</OPTION> 
+              <OPTION value=[獎勵原因：貢獻-誠摯感謝你幫助版主回答問題分擔版務！]>誠摯感謝你幫助版主回答問題分擔版務！</OPTION> 
+              <OPTION value=[獎勵原因：貢獻-感謝你對違規帖子進行舉報！]>感謝你對違規帖子進行舉報！</OPTION> 
+              <OPTION value=[獎勵原因：貢獻-感謝你熱心幫助其他會員解決問題！]>感謝你熱心幫助其他會員解決問題！</OPTION> 
+</select><br><textarea cols="103" rows="3" name="cmbmessage"></textarea></td></tr>
+<!-- Hack End -->
+</table>
+</td></tr></table><br>
+<input type="hidden" name="tid" value="$tid">
+<input type="hidden" name="pid" value="$pid">
+<input type="hidden" name="username" value="$username">
+<input type="hidden" name="score" value="$score">
+<center><input type="submit" name="topicsubmit" value="{lang submit}"></center>
+</form>
+{template footer}

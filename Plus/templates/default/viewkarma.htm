@@ -1,0 +1,34 @@
+{template header}
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center" style="table-layout: fixed"> 
+<tr><td class="nav" width="90%" nowrap>&nbsp;<a href="index.php">$bbname</a> &raquo; 本貼評分記錄</td>
+<td align="right" width="10%"><a href="#bottom"><img src="{IMGDIR}/arrow_dw.gif" border="0" align="absmiddle"></a></td>        
+</tr></table><br>
+
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+<tr><td class="multi">$multipage</td></tr>
+<tr><td height="3"></td></tr></table>
+	<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+	<tr><td bgcolor="{BORDERCOLOR}">
+	<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+	<tr class="header">
+	<td align="center" nowrap>編號</td>
+	<td align="center" nowrap>評分人</td>
+	<td align="center" nowrap>評分</td>
+	<td align="center" nowrap>評分時間</td>
+	</tr>
+	<!--{loop $karmalist $karma}-->
+		<tr align="center">
+		<td bgcolor="{ALTBG1}">$karma[id]</td>
+		<td bgcolor="{ALTBG2}"><a href="viewpro.php?username=$karma[urluser]">$karma[username]</a></td>
+		<td bgcolor="{ALTBG1}">$karma[score]</td>
+		<td bgcolor="{ALTBG2}">$karma['dateline']</td>
+	<!--{/loop}-->
+	</table></td></tr></table>
+
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+<tr><td class="multi">$multipage</td></tr>
+<tr><td height="10"></td></tr>
+<tr><td align=center><br><br><a href="###" onclick="history.go(-1)">[ 點擊這裡返回上一頁 ]</a></td></tr>
+<tr><td height="3"></td></tr></table>
+
+{template footer}

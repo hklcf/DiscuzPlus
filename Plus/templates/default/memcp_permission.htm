@@ -1,0 +1,160 @@
+{template header}
+{template memcp_navbar}
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+        <tr> 
+          <td colspan="2" class="header">用戶所在組信息</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">用戶組頭銜:</td>
+          <td bgcolor="{ALTBG2}">$permission[grouptitle]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">版主權限:</td>
+          <td bgcolor="{ALTBG2}">$permission[ismoderator]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">超級版主權限:</td>
+          <td bgcolor="{ALTBG2}">$permission[issupermod]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">管理員權限:</td>
+          <td bgcolor="{ALTBG2}">$permission[isadmin]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">用戶組積分情況:</td>
+          <td bgcolor="{ALTBG2}"> 
+            <!--{if $ismoderator}-->
+            用戶沒有積分限制 
+            <!--{else}-->
+            $permission[creditshigher] - $permission[creditslower] 
+            <!--{/if}-->
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2" class="header">用戶瀏覽權限</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">允許訪問論壇:</td>
+          <td width="45%" bgcolor="{ALTBG2}">$permission[allowvisit]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">允許瀏覽貼子:</td>
+          <td bgcolor="{ALTBG2}">$permission[allowview]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">可以查看會員信息(包括其他會員的資料和會員列表):</td>
+          <td bgcolor="{ALTBG2}">$permission[allowvisit]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">允許使用搜索:</td>
+          <td bgcolor="{ALTBG2}"> 
+            <!--{if $permission[allowsearch]=='0'}-->
+            禁用搜索 
+            <!--{elseif $permission[allowsearch=='1']}-->
+            只允許搜索標題 
+            <!--{else}-->
+            允許搜索貼子內容 
+            <!--{/if}-->
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">查看統計數據:</td>
+          <td bgcolor="{ALTBG2}">$permission[allowviewstats]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}" width="55%">允許下載附件:</td>
+          <td bgcolor="{ALTBG2}">$permission[allowgetattach]</td>
+        </tr>
+        <tr> 
+          <td colspan="2" class="header">用戶發貼權限</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}" width="55%">允許發貼:</td>
+          <td bgcolor="{ALTBG2}">$permission[allowpost]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">允許設置貼子權限:</td>
+          <td bgcolor="{ALTBG2}">$permission[allowsetviewperm]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}" width="55%">允許發起投票:</td>
+          <td bgcolor="{ALTBG2}">$permission[allowpostpoll]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}" width="55%">允許參與投票:</td>
+          <td bgcolor="{ALTBG2}">$permission[allowvote]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}" width="55%">允許發佈附件:</td>
+          <td bgcolor="{ALTBG2}">$permission[allowpostattach]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}" width="55%">允許設置附件權限:</td>
+          <td bgcolor="{ALTBG2}">$permission[allowsetattachperm]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}" width="55%">最大附件尺寸:</td>
+          <td bgcolor="{ALTBG2}">$permission[maxattachsize] 字節</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}" width="55%">允許附件類型:</td>
+          <td bgcolor="{ALTBG2}">$permission[attachextensions]</td>
+        </tr>
+        <tr> 
+          <td colspan="2" class="header">用戶其他權限</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">允許使用頭像:</td>
+          <td bgcolor="{ALTBG2}"> 
+            <!--{if $permission[allowavatar] =="0"}-->
+            禁用頭像 
+            <!--{elseif $permission[allowavatar] =="1"}-->
+            允許使用論壇提供頭像 
+            <!--{else}-->
+            允許自定義頭像 
+            <!--{/if}-->
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">允許自定義頭銜:</td>
+          <td bgcolor="{ALTBG2}">$permission[allowcstatus]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">允許參與評分:</td>
+          <td bgcolor="{ALTBG2}">$permission[allowkarma]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">每次最大評價分數:</td>
+          <td bgcolor="{ALTBG2}">$permission[maxkarmarate]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}" width="55%">每天最大評價分數:</td>
+          <td bgcolor="{ALTBG2}">$permission[maxrateperday] </td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">短消息收件箱容量:</td>
+          <td bgcolor="{ALTBG2}">$permission[maxpmnum]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">備忘錄容量:</td>
+          <td bgcolor="{ALTBG2}">$permission[maxmemonum]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">允許簽名中使用Discuz!代碼:</td>
+          <td bgcolor="{ALTBG2}">$permission[allowsigbbcode]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">允許簽名中使用[img]代碼</td>
+          <td bgcolor="{ALTBG2}">$permission[allowsigimgcode]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="{ALTBG1}">最大簽名長度:</td>
+          <td bgcolor="{ALTBG2}">$permission[maxsigsize]</td>
+        </tr>
+      </table>
+</td></tr></table>
+<br>
+<br>
+{template footer}

@@ -1,0 +1,99 @@
+{template header}
+<!--{if $action=="list"}-->
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center" style="table-layout: fixed"> 
+<tr><td class="nav" width="90%" nowrap>&nbsp;<a href="index.php">$bbname</a> &raquo; <a href="chname.php">改名中心</a> &raquo; 查看改名記錄</td><td align="right" width="10%"><a href="#bottom"><img src="{IMGDIR}/arrow_dw.gif" border="0" align="absmiddle"></a></td> </tr></table>
+
+<br><br>
+
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr class="header">
+<td width="5%" align="center">編號</td>
+<td width="20%" align="center">改名時間</td>
+<td width="20%" align="center">原有會員名稱</td>
+<td width="20%" align="center">新會員名稱</td>
+<td width="35%" align="center">改名原因</td>
+</tr>
+<!--{loop $chnamelist $member}-->
+	<tr>
+		<td bgcolor="{ALTBG1}" width="5%" align="center" nowrap>$member[id]</td>
+		<td bgcolor="{ALTBG2}" width="20%" align="center">$member[dateline]</td>
+		<td bgcolor="{ALTBG1}" width="20%" align="center">$member[oldname]</td>
+		<td bgcolor="{ALTBG2}" width="20%" align="center"><a href="viewpro.php?username=$member[newname]">$member[newname]</a></td>
+		<td bgcolor="{ALTBG1}" width="35%" align="center">$member[reason]</td>
+
+</tr>
+<!--{/loop}-->
+</table></td></tr>
+<tr><td class="multi">$multipage</td></tr></table>
+
+<!--{else}-->
+
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center" style="table-layout: fixed"> 
+<tr><td class="nav" width="90%" nowrap>&nbsp;<a href="index.php">$bbname</a> &raquo; 改名中心</td><td align="right" width="10%"><a href="#bottom"><img src="{IMGDIR}/arrow_dw.gif" border="0" align="absmiddle"></a></td> </tr></table>
+
+<br><br>
+
+<form action="chname.php?action=changename" method=post>
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+<tr> <td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+
+<tr class="header">
+<td>改名中心</td>
+<td align="right"><a href="chname.php?action=list" style="color: {HEADERTEXT}; font-weight: normal">查看改名記錄</a></td>
+</tr>
+
+<tr height="45">
+<td bgcolor="#FFFFFF" colspan="2"><font color="red">改名之後，如果出現關於名稱的問題，請聯絡管理員。
+<br>成功更改會員名稱後，系統會發出短訊給你，並會記錄更改的時間及舊名稱作日後的証明。
+<br>如果你是論壇版主/區版/超版/會員組織主席，請將系統發出的確認短訊轉發給壇主。
+<br>成功改名後，請用新名稱重新登入。</font></td>
+</tr>
+
+<tr height="25">
+<td bgcolor="#FFFFFF" width="28%">會員名稱</td>
+<td bgcolor="#FFFFFF" width="72%"> $discuz_user </td>
+</tr>
+
+<tr height="25">
+<td bgcolor="#FFFFFF">可動用現金</td>
+<td bgcolor="#FFFFFF"> $usermoney 元&nbsp;<font color="green">(更改會員名稱會收取 $chmoney 元手續費)</font></td>
+</tr>
+
+<tr height="25">
+<td bgcolor="#FFFFFF">你的積分</td>
+<td bgcolor="#FFFFFF"> $credit 分&nbsp;<font color="green">(積分必須高於 $chcredit 分才可以改名)</font></td>
+</tr>
+
+
+<tr height="25">
+<td bgcolor="#FFFFFF">新會員名稱</td>
+<td bgcolor="#FFFFFF">
+<input name="newname" type="text" size="20" maxlength="16">
+</td></tr>
+
+<tr height="25">
+<td bgcolor="#FFFFFF" valign="top">改名原因 (<font color="red">必須填寫</font>)</td>
+<td bgcolor="#FFFFFF">
+<textarea cols="50" rows="3" name="reason"></textarea>
+</td>
+</tr>
+
+<tr height="25">
+<td bgcolor="#FFFFFF" colspan="2">
+<input type="hidden" name="action" value="changename">
+<input type="submit" name="Submit" value="確定更改">
+<input type="reset" value="重新填寫"></td>
+</tr>
+
+</table>
+</td></tr>
+<tr><td><br><br>
+
+</td></tr></table>
+
+</form>
+<!--{/if}-->
+{template footer}

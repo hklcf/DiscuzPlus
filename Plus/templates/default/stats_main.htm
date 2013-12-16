@@ -1,0 +1,56 @@
+{template header}
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center" style="table-layout: fixed"> 
+<tr><td class="nav" width="90%" nowrap>&nbsp;<a href="index.php">$bbname</a> &raquo; {lang stats}</td>
+<td align="right" width="10%"><a href="#bottom"><img src="{IMGDIR}/arrow_dw.gif" border="0" align="absmiddle"></a></td>        
+</tr></table><br>
+
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr><td class="header">{lang stats}
+</td></tr><tr bgcolor="{ALTBG1}"><td>
+
+<br><table cellspacing="0" cellpadding="0" border="0" width="85%" align="center">
+<tr><td bgcolor="{BORDERCOLOR}"><table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr bgcolor="{ALTBG2}"><td align="center" class="smalltxt">
+<a href="stats.php">[ {lang stats_main} ]</a> &nbsp; <a href="stats.php?type=week">[ {lang stats_week} ]</a> &nbsp; 
+<a href="stats.php?type=hour">[ {lang stats_hour} ]</a> &nbsp; <a href="stats.php?type=agent">[ {lang stats_agent} ]</a> &nbsp; 
+<a href="stats.php?type=threads">[ {lang stats_threads} ]</a> &nbsp; <a href="stats.php?type=member">[ {lang stats_members} ]</a></td></tr>
+</table></td></tr></table><br>
+
+<br><table cellspacing="0" cellpadding="0" border="0" width="85%" align="center">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%" class="smalltxt">
+<tr bgcolor="{ALTBG2}"><td><span class="bold">{lang stats_main_member}:</span><br>
+{lang stats_main_members}: <span class="bold">$members</span> &nbsp;|&nbsp; {lang stats_main_admins}: <span class="bold">$admins</span> &nbsp;|&nbsp; {lang stats_main_new}: <span class="bold">$lastmember</span> &nbsp;|&nbsp; {lang stats_main_topposter} <span class="bold">$bestmem</span> - {lang stats_main_total_posted} <span class="bold">$bestmempost</span> <br>
+{lang stats_main_posters}: <span class="bold">$mempost</span> &nbsp;|&nbsp; {lang stats_main_nonposters}: <span class="bold">$memnonpost</span> &nbsp;|&nbsp; {lang stats_main_posters_percent} <span class="bold">$mempostpercent%</span> &nbsp;|&nbsp; {lang stats_main_posts_avg}: <span class="bold">$mempostavg</span> 
+</td></tr></table></td></tr></table>
+
+<br><table cellspacing="0" cellpadding="0" border="0" width="85%" align="center">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%" class="smalltxt">
+<tr bgcolor="{ALTBG2}"><td><span class="bold">{lang stats_main_board}:</span><br>
+{lang stats_main_forums_count}: <span class="bold">$forums</span> &nbsp;|&nbsp; {lang stats_main_threads_count}: <span class="bold">$threads</span> &nbsp;|&nbsp; {lang stats_main_posts_count}: <span class="bold">$posts</span> &nbsp;|&nbsp; {lang stats_main_rpt}: <span class="bold">$threadreplyavg</span> <br>
+{lang stats_main_nppd}: <span class="bold">$postsaddavg</span> | {lang stats_main_members}: <span class="bold">$membersaddavg</span> &nbsp;|&nbsp; {lang stats_main_todays_newposts}: <span class="bold">$postsaddtoday</span> , {lang stats_main_members_count}: <span class="bold">$membersaddtoday</span><br>
+{lang stats_main_hot_forum}: <span class="bold"><a href="forumdisplay.php?fid=$hotforum[fid]">$hotforum[name]</a></span> - {lang stats_main_threads_count} <span class="bold">$hotforum[threads]</span>, {lang stats_main_posts_count} <span class="bold">$hotforum[posts]</span> &nbsp;|&nbsp; Discuz! {lang stats_main_board_activity}: <span class="bold">$activeindex</span><br>
+</td></tr></table></td></tr></table>
+
+<br><table cellspacing="0" cellpadding="0" border="0" width="85%" align="center">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%" class="smalltxt">
+<tr bgcolor="{ALTBG2}"><td><span class="bold">{lang stats_main_pageview}: </span><br>
+{lang stats_main_total_pageview}: <span class="bold">$stats_total[hits]</span> &nbsp;|&nbsp; {lang stats_main_total_visitors}: <span class="bold">$stats_total[visitors]</span> {lang stats_main_person_time} - {lang member}: <span class="bold">$stats_total[members]</span>, {lang guest}: <span class="bold">$stats_total[guests]</span> &nbsp;|&nbsp; {lang stats_main_pv_avg}: <span class="bold">$pageviewavg</span><br>
+{lang stats_main_maxpv_month}, {lang stats_main_total_pageview} <span class="bold">$maxmonth</span> &nbsp;|&nbsp; 
+{lang stats_main_period_of_time}: <span class="bold">$maxhourfrom</span> {lang to} <span class="bold">$maxhourto</span>, {lang stats_main_total_pageview} <span class="bold">$maxhour</span>
+</td></tr></table></td></tr></table>
+
+<br><table cellspacing="0" cellpadding="0" border="0" width="85%" align="center">
+<tr><td bgcolor="{BORDERCOLOR}">
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%" class="smalltxt">
+<tr bgcolor="{ALTBG2}"><td><span class="bold">{lang stats_main_month}:</span><br>
+<table border="0" cellspacing="0" cellpadding="{TABLESPACE}" width="610" class="smalltxt">
+$statsbar_month
+</table></td></tr></table></td></tr></table><br>
+
+</td></tr></table></td></tr></table>
+{template footer}

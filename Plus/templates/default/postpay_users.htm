@@ -1,0 +1,65 @@
+{template header}
+
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center" style="table-layout: fixed"> 
+
+<tr><td class="nav" width="90%" nowrap>&nbsp;<a href="index.php">$bbname</a> &raquo; 本貼收費信息($sellcount)購買記錄：（信息總收入： $pay['allmoney'] 元）</td>
+
+<td align="right" width="10%"><a href="#bottom"><img src="{IMGDIR}/arrow_dw.gif" border="0" align="absmiddle"></a></td>        
+
+</tr></table><br>
+
+
+
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+
+<tr><td class="multi">$multipage</td></tr>
+
+<tr><td height="3"></td></tr></table>
+
+        <table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+
+        <tr><td bgcolor="{BORDERCOLOR}">
+
+        <table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+
+        <tr class="header">
+
+        <td align="center" nowrap>編號</td>
+
+        <td align="center" nowrap>付費會員</td>
+
+        <td align="center" nowrap>金額</td>
+
+        <td align="center" nowrap>付費時間</td>
+
+        </tr>
+
+        <!--{loop $userpaylist $userpay}-->
+
+                <tr align="center">
+
+                <td bgcolor="{ALTBG1}">$userpay[id]</td>
+
+                <td bgcolor="{ALTBG2}"><a href="viewpro.php?username=$userpay[userlink]">$userpay[username]</a></td>
+
+                <td bgcolor="{ALTBG1}">$userpay[money]</td>
+
+                <td bgcolor="{ALTBG2}">$userpay['dateline']</td>
+
+        <!--{/loop}-->
+
+        </table></td></tr></table>
+
+
+
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+
+<tr><td class="multi">$multipage</td></tr>
+
+<tr><td height="10"></td></tr>
+
+<tr><td align=center><br><br><a href="###" onclick="history.go(-1)">[ 點擊這里返回上一頁 ]</a></td></tr>
+
+<tr><td height="3"></td></tr></table>
+
+{template footer}

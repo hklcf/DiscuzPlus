@@ -1,0 +1,81 @@
+{template header}
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center" style="table-layout: fixed"> 
+<tr><td class="nav" width="90%" nowrap>&nbsp;<a href="index.php">$bbname</a> &raquo; <a href="bank.php">論壇銀行</a> &raquo; $bankaction</td>
+<td align="right" width="10%"><a href="#bottom"><img src="{IMGDIR}/arrow_dw.gif" border="0" align="absmiddle"></a></td>        
+</tr></table>
+
+<form method="post" action="bank.php">
+<table cellspacing="0" cellpadding="0" border="0" width="400" align="center">
+<tr><td bgcolor="{BORDERCOLOR}">
+
+<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+<tr class="header">
+<td colspan="2">$bankaction</td>
+</tr>
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">{lang username}:</td>
+<td bgcolor="{ALTBG2}">$discuz_userss  <span class="smalltxt">[<a href="logging.php?action=logout">{lang member_logout}</a>]</span></td>
+</tr>
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">$bankaction :</td>
+<td bgcolor="{ALTBG2}">$bank</td>
+</tr>
+<!--{if $action=='buy'}-->
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">銀行手續費:</td>
+<td bgcolor="{ALTBG2}">$bank_tax</td>
+</tr>
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">總共支付:</td>
+<td bgcolor="{ALTBG2}">$yourcash
+</td>
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">現金結余:</td>
+<td bgcolor="{ALTBG2}">$yourmoney
+</td>
+<input type="hidden" name="action" value="buy">
+</tr>
+<!--{/if}-->
+<!--{if $action=='sell'}-->
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">銀行手續費:</td>
+<td bgcolor="{ALTBG2}">$bank_tax</td>
+</tr>
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">實際收入:</td>
+<td bgcolor="{ALTBG2}">$yourcash</td>
+<input type="hidden" name="action" value="sell">
+</tr>
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">積分結余:</td>
+<td bgcolor="{ALTBG2}">$yourcredit</td>
+</tr>
+<!--{/if}-->
+<!--{if $action=='change'}-->
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">收款人:</td>
+<td bgcolor="{ALTBG2}">$changeuser</td>
+</tr>
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">銀行手續費:</td>
+<td bgcolor="{ALTBG2}">$bank_tax</td>
+</tr>
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">實際花費:</td>
+<td bgcolor="{ALTBG2}">$changecost</td>
+</tr>
+<tr>
+<td bgcolor="{ALTBG1}" width="21%">存款結余:</td>
+<td bgcolor="{ALTBG2}">$yourbank (不含利息)</td>
+<input type="hidden" name="action" value="change">
+</tr>
+<!--{/if}-->
+
+
+</table>
+</td></tr></table><br>
+<input type="hidden" name="actionmoney" value="$bank">
+<input type="hidden" name="changeuser" value="$changeuser">
+<center><input type="submit" name="submit" value="{lang submit}"></center>
+</form>
+{template footer}

@@ -1,0 +1,265 @@
+{template header}
+<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center" style="table-layout: fixed"> 
+<tr><td class="nav" width="90%" nowrap>&nbsp;<a href="index.php">$bbname</a> &raquo; {lang register}</td>
+<td align="right" width="10%"><a href="#bottom"><img src="{IMGDIR}/arrow_dw.gif" border="0" align="absmiddle"></a></td>        
+</tr></table><br>
+
+<!--{if $bbrules && !$rulesubmit}-->
+	<form name="bbrules" method="post" action="register.php?referer=$referer">
+	<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+	<tr><td bgcolor="{BORDERCOLOR}">
+
+	<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+	<tr>
+	<td class="header">{lang register}</td>
+	</tr>
+
+	<tr bgcolor="{ALTBG1}">
+	<td width="21%">$bbrulestxt</td>
+	</tr>
+
+	</table>
+	</td></tr></table><br>
+	<center>
+	<input type="submit" name="rulesubmit" value="{lang agree}" style="height: 23px">
+	<input type="button" name="return" value="{lang disagree}" style="height: 23px" onclick="javascript:history.go(-1);">
+	</form>
+	</center>
+
+	<script language="javascript">
+	var secs = 15;
+	var wait = secs * 1000;
+	document.bbrules.rulesubmit.value = "{lang agree}(" + secs + ")";
+	document.bbrules.rulesubmit.disabled = true;
+	for(i = 1; i <= secs; i++) {
+	        window.setTimeout("update(" + i + ")", i * 1000);
+	}
+	window.setTimeout("timer()", wait);
+	function update(num, value) {
+	        if(num == (wait/1000)) {
+	                document.bbrules.rulesubmit.value = "{lang agree}";
+	        } else {
+	                printnr = (wait / 1000)-num;
+	                document.bbrules.rulesubmit.value = "{lang agree}(" + printnr + ")";
+	        }
+	}
+	function timer() {
+	        document.bbrules.rulesubmit.disabled = false;
+	        document.bbrules.rulesubmit.value = "{lang agree}";
+	}
+	</script>
+<!--{else}-->
+	<form method="post" action="register.php?referer=$referer">
+	<table cellspacing="0" cellpadding="0" border="0" width="{TABLEWIDTH}" align="center">
+	<tr><td bgcolor="{BORDERCOLOR}">
+
+	<table border="0" cellspacing="{BORDERWIDTH}" cellpadding="{TABLESPACE}" width="100%">
+	<tr>
+	<td colspan="2" class="header">{lang register} - {lang required_info}</td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}" width="21%">{lang username}:</td>
+	<td bgcolor="{ALTBG2}"><input type="text" name="username" size="25" maxlength="25"></td>
+	</tr>
+
+	<!--{if !$regverify}-->
+		<tr>
+		<td bgcolor="{ALTBG1}">{lang password}:</td>
+		<td bgcolor="{ALTBG2}"><input type="password" name="password" size="25"></td>
+		</tr><tr>
+		<td bgcolor="{ALTBG1}">{lang password_confirm}:</td>
+		<td bgcolor="{ALTBG2}"><input type="password" name="password2" size="25"></td>
+		</tr>
+	<!--{/if}-->
+
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang security_question}:</td>
+	<td bgcolor="{ALTBG2}"><select name="questionid">
+	<option value="0">{lang security_question_0}</option>
+	<option value="1">{lang security_question_1}</option>
+	<option value="2">{lang security_question_2}</option>
+	<option value="3">{lang security_question_3}</option>
+	<option value="4">{lang security_question_4}</option>
+	<option value="5">{lang security_question_5}</option>
+	<option value="6">{lang security_question_6}</option>
+	<option value="7">{lang security_question_7}</option>
+	</select>
+	</td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang security_answer}:</td>
+	<td bgcolor="{ALTBG2}"><input type="text" name="answer" size="25"></td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang email}:</td>
+	<td bgcolor="{ALTBG2}"><input type="text" name="email" size="25"></td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang tuijianren}:</td>
+	<td bgcolor="{ALTBG2}"><input type="text" name="tuijianren" value="$tuijianren" size="25"> {lang tuijianren2}</td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang gender}:</td>
+	<td bgcolor="{ALTBG2}">
+	<input type="radio" name="gendernew" value="1"> {lang male} &nbsp; 
+	<input type="radio" name="gendernew" value="2"> {lang female} &nbsp; 
+	<input type="radio" name="gendernew" value="0" checked> {lang secret}
+	</td></tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang birthday}:</td>
+	<td bgcolor="{ALTBG2}">
+	<input type="text" name="year" size="4"> {lang year} 
+	<select name="month">
+	<option value="">&nbsp;</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	</select> {lang month} 
+	<select name="day">
+	<option value="">&nbsp;</option>
+	$dayselect
+	</select> {lang day}
+	</td></tr>
+
+	<tr>
+	<td colspan="2" class="header">{lang register} - {lang optional_info}</td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang location}:</td>
+	<td bgcolor="{ALTBG2}"><input type="text" name="locationnew" size="25"></td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang homepage}:</td>
+	<td bgcolor="{ALTBG2}"><input type="text" name="site" size="25"></td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">OICQ:</td>
+	<td bgcolor="{ALTBG2}"><input type="text" name="oicq" size="25"></td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">ICQ:</td>
+	<td bgcolor="{ALTBG2}"><input type="text" name="icq" size="25"></td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">Yahoo:</td>
+	<td bgcolor="{ALTBG2}"><input type="text" name="yahoo" size="25"></td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">MSN:</td>
+	<td bgcolor="{ALTBG2}"><input type="text" name="msn" size="25"></td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang bio}:</td>
+	<td bgcolor="{ALTBG2}"><textarea rows="5" cols="30" name="bio"></textarea></td>
+	</tr>
+
+	<tr>
+	<td colspan="2" class="header">{lang register} - {lang board_options}</td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang style}:</td>
+	<td bgcolor="{ALTBG2}"><select name="styleidnew">
+	<option value="">{lang use_default}</option>
+	$styleselect
+	</select>
+	</td>
+	</tr>
+	
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang tpp}:</td>
+	<td bgcolor="{ALTBG2}"><select name="tppnew">
+	<option value="0">{lang use_default}</option>
+	<option value="10">10</option>
+	<option value="20">20</option>
+	<option value="30">30</option>
+	</select></td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang ppp}:</td>
+	<td bgcolor="{ALTBG2}"><select name="pppnew">
+	<option value="0">{lang use_default}</option>
+	<option value="5">5</option>
+	<option value="10">10</option>
+	<option value="15">15</option>
+	</select></td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang timeformat}:</td>
+	<td bgcolor="{ALTBG2}"><input type="radio" value="24" name="timeformatnew">24 {lang hour}
+	<input type="radio" value="12" name="timeformatnew" checked="checked">12 {lang hour}</td>
+	</tr>
+
+	<!--{if $groupinfo[allowcstatus]}-->
+		<tr>
+		<td bgcolor="{ALTBG1}" width="21%">{lang custom_status}:</td>
+		<td bgcolor="{ALTBG2}">
+		<input type="text" name="cstatus" size="25"></td>
+		</tr>
+	<!--{/if}-->
+
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang dateformat}:<br><span class="smalltxt">(yyyy/mm/ddm, mm/dd/yy {lang etc})</span></td>
+	<td bgcolor="{ALTBG2}"><input type="text" name="dateformatnew" size="25" value="$dateformatorig"></td>
+	</tr>
+
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang other_options}:</td>
+	<td bgcolor="{ALTBG2}">
+	<input type="checkbox" name="showemail" value="1" checked="checked"> {lang show_email_addr}<br>
+	<input type="checkbox" name="newsletter" value="1" checked="checked"> {lang allow_newsletter}<br>
+	<input type="text" name="timeoffsetnew" value="$timeoffset" size="3"> {lang timeoffset}<br></td>
+	</tr>
+
+	<!--{if $groupinfo[allowavatar] == 1}-->
+		<tr>
+		<td bgcolor="{ALTBG1}">{lang avatar}:</td>
+		<td bgcolor="{ALTBG2}"><input type="button" value="{lang memcp_avatar_list}" onclick="this.form.action+='&referer=memcp.php?action=viewavatars&regsubmit=yes';this.form.submit();"></td>
+		</tr>
+	<!--{elseif $groupinfo[allowavatar] == 2}-->
+		<tr>
+		<td bgcolor="{ALTBG1}">{lang avatar}:</td>
+		<td bgcolor="{ALTBG2}"><input type="text" name="avatar" size="25" value="$member[avatar]">&nbsp;&nbsp;<input type="button" value="{lang memcp_avatar_list}" onclick="this.form.action+='&referer=memcp.php?action=viewavatars&regsubmit=1';this.form.submit();">
+		<br><span class="smalltxt">{lang image_comment}</span></td>
+		</tr>
+	<!--{/if}-->
+
+	<tr>
+	<td bgcolor="{ALTBG1}">{lang signature}<!--{if $maxsigsize}--> ($maxsigsize {lang bytes_limited})<!--{/if}-->:<br><br>
+	<span class="smalltxt">
+	<a href="faq.php?page=misc#1" target="_blank">{lang post_discuzcode}</a> {lang is} $bbcodeis<br>
+	{lang post_imgcode} {lang is} $imgcodeis
+	</span></td>
+	<td bgcolor="{ALTBG2}"><textarea rows="4" cols="30" name="sig"></textarea></td>
+	</tr>
+
+	</table>
+	</td></tr></table><br>
+	<center><input type="submit" name="regsubmit" value="{lang register}"></center>
+	</form>
+<!--{/if}-->
+{template footer}

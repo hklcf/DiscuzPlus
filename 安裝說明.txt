@@ -1,0 +1,44 @@
+Discuz! Plus 1.1.4
+程序製作：HKLCF
+電子信箱：[email]admin@hklcf.com[/email]
+測試網站：[url]http://discuz.hklcf.com[/url]
+
+
+全新安裝的方法: (以下每一步都非常關鍵,請仔細閱讀)
+
+  + 上傳所有程序文件到服務器
+
+  + 將 ./templates, ./attachments, ./customavatars, ./forumdata, ./forumdata/cache, ./forumdata/templates 六個目錄屬性改為 777,否則無法繼續安裝
+
+  + 運行 install.php 根據提示安裝程序,設置管理員賬號
+
+  + 如果提示您的 config.php 無法在線編輯,請在本地編輯好後用 FTP 上傳
+
+  + 如果因 PHP 配置原因無法發送郵件,可修改 mail_config.php,選用其他的方式
+
+
+升級安裝的方法: (以下每一步都非常關鍵,請仔細閱讀)
+
+  + 上傳所有程序文件到服務器(config.php,install.php除外)
+
+  + 將 ./templates, ./attachments, ./customavatars, ./forumdata, ./forumdata/cache, ./forumdata/templates 六個目錄屬性改為 777,否則無法繼續安裝
+
+  + 運行 updata.php 根據提示升級程序
+
+
+我們的聯繫的方式:
+
+  + BBS(forum)	http://discuz.hklcf.com		(lai107)
+
+  + Homepage	http://www.HKLCF.com		(HKLCF)
+
+  + Email	admin@hklcf.com
+
+  + ICQ		171847266
+  
+  + 尋求技術支持請訪問 HKLCF 技術論壇(http://discuz.hklcf.com),如果
+    通過其他方式可能不會予以解答
+
+
+
+                            (C)HKLCF, 2003-2004

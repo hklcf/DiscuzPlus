@@ -1,0 +1,16 @@
+#
+# robots.txt for Discuz! Plus Board
+# Version 1.1.3
+#
+
+User-agent: *
+Disallow: /admin
+Disallow: /advcenter
+Disallow: /attachments
+Disallow: /customavatars
+Disallow: /forumdata
+Disallow: /images
+Disallow: /include
+Disallow: /ipdata
+Disallow: /plugins
+Disallow: /templates
