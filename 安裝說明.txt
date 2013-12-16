@@ -1,43 +1,43 @@
 Discuz! Plus 1.1.4
-µ{§Ç»s§@¡GHKLCF
-¹q¤l«H½c¡G[email]admin@hklcf.com[/email]
-´ú¸Õºô¯¸¡G[url]http://discuz.hklcf.com[/url]
+ç¨‹åºè£½ä½œï¼šHKLCF
+é›»å­ä¿¡ç®±ï¼š[email]admin@hklcf.com[/email]
+æ¸¬è©¦ç¶²ç«™ï¼š[url]http://discuz.hklcf.com[/url]
 
 
-¥ş·s¦w¸Ëªº¤èªk: (¥H¤U¨C¤@¨B³£«D±`ÃöÁä,½Ğ¥J²Ó¾\Åª)
+å…¨æ–°å®‰è£çš„æ–¹æ³•: (ä»¥ä¸‹æ¯ä¸€æ­¥éƒ½éå¸¸é—œéµ,è«‹ä»”ç´°é–±è®€)
 
-  + ¤W¶Ç©Ò¦³µ{§Ç¤å¥ó¨ìªA°È¾¹
+  + ä¸Šå‚³æ‰€æœ‰ç¨‹åºæ–‡ä»¶åˆ°æœå‹™å™¨
 
-  + ±N ./templates, ./attachments, ./customavatars, ./forumdata, ./forumdata/cache, ./forumdata/templates ¤»­Ó¥Ø¿ıÄİ©Ê§ï¬° 777,§_«hµLªkÄ~Äò¦w¸Ë
+  + å°‡ ./templates, ./attachments, ./customavatars, ./forumdata, ./forumdata/cache, ./forumdata/templates å…­å€‹ç›®éŒ„å±¬æ€§æ”¹ç‚º 777,å¦å‰‡ç„¡æ³•ç¹¼çºŒå®‰è£
 
-  + ¹B¦æ install.php ®Ú¾Ú´£¥Ü¦w¸Ëµ{§Ç,³]¸mºŞ²z­û½ã¸¹
+  + é‹è¡Œ install.php æ ¹æ“šæç¤ºå®‰è£ç¨‹åº,è¨­ç½®ç®¡ç†å“¡è³¬è™Ÿ
 
-  + ¦pªG´£¥Ü±zªº config.php µLªk¦b½u½s¿è,½Ğ¦b¥»¦a½s¿è¦n«á¥Î FTP ¤W¶Ç
+  + å¦‚æœæç¤ºæ‚¨çš„ config.php ç„¡æ³•åœ¨ç·šç·¨è¼¯,è«‹åœ¨æœ¬åœ°ç·¨è¼¯å¥½å¾Œç”¨ FTP ä¸Šå‚³
 
-  + ¦pªG¦] PHP °t¸m­ì¦]µLªkµo°e¶l¥ó,¥i­×§ï mail_config.php,¿ï¥Î¨ä¥Lªº¤è¦¡
-
-
-¤É¯Å¦w¸Ëªº¤èªk: (¥H¤U¨C¤@¨B³£«D±`ÃöÁä,½Ğ¥J²Ó¾\Åª)
-
-  + ¤W¶Ç©Ò¦³µ{§Ç¤å¥ó¨ìªA°È¾¹(config.php,install.php°£¥~)
-
-  + ±N ./templates, ./attachments, ./customavatars, ./forumdata, ./forumdata/cache, ./forumdata/templates ¤»­Ó¥Ø¿ıÄİ©Ê§ï¬° 777,§_«hµLªkÄ~Äò¦w¸Ë
-
-  + ¹B¦æ updata.php ®Ú¾Ú´£¥Ü¤É¯Åµ{§Ç
+  + å¦‚æœå›  PHP é…ç½®åŸå› ç„¡æ³•ç™¼é€éƒµä»¶,å¯ä¿®æ”¹ mail_config.php,é¸ç”¨å…¶ä»–çš„æ–¹å¼
 
 
-§Ú­ÌªºÁpÃ´ªº¤è¦¡:
+å‡ç´šå®‰è£çš„æ–¹æ³•: (ä»¥ä¸‹æ¯ä¸€æ­¥éƒ½éå¸¸é—œéµ,è«‹ä»”ç´°é–±è®€)
 
-  + BBS(forum)	http://discuz.hklcf.com		(lai107)
+  + ä¸Šå‚³æ‰€æœ‰ç¨‹åºæ–‡ä»¶åˆ°æœå‹™å™¨(config.php,install.phpé™¤å¤–)
 
-  + Homepage	http://www.HKLCF.com		(HKLCF)
+  + å°‡ ./templates, ./attachments, ./customavatars, ./forumdata, ./forumdata/cache, ./forumdata/templates å…­å€‹ç›®éŒ„å±¬æ€§æ”¹ç‚º 777,å¦å‰‡ç„¡æ³•ç¹¼çºŒå®‰è£
 
-  + Email	admin@hklcf.com
+  + é‹è¡Œ updata.php æ ¹æ“šæç¤ºå‡ç´šç¨‹åº
 
-  + ICQ		171847266
+
+æˆ‘å€‘çš„è¯ç¹«çš„æ–¹å¼:
+
+  + BBS(forum)        http://discuz.hklcf.com                (lai107)
+
+  + Homepage        http://www.HKLCF.com                (HKLCF)
+
+  + Email        admin@hklcf.com
+
+  + ICQ                171847266
   
-  + ´M¨D§Ş³N¤ä«ù½Ğ³X°İ HKLCF §Ş³N½×¾Â(http://discuz.hklcf.com),¦pªG
-    ³q¹L¨ä¥L¤è¦¡¥i¯à¤£·|¤©¥H¸Ñµª
+  + å°‹æ±‚æŠ€è¡“æ”¯æŒè«‹è¨ªå• HKLCF æŠ€è¡“è«–å£‡(http://discuz.hklcf.com),å¦‚æœ
+    é€šéå…¶ä»–æ–¹å¼å¯èƒ½ä¸æœƒäºˆä»¥è§£ç­”
 
 
 
