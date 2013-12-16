@@ -1,129 +1,129 @@
 <?php
 
 /*
-	Version: 1.1.3(BUG Fixed)
-	Author: HKLCF (admin@hklcf.com)
-	Copyright: HKLCF (www.hklcf.com)
-	Last Modified: 2004/11/08
+        Version: 1.1.3(BUG Fixed)
+        Author: HKLCF (admin@hklcf.com)
+        Copyright: HKLCF (www.hklcf.com)
+        Last Modified: 2004/11/08
 */
 
-// ==================== ¥H¤UÅÜ¶q»İ®Ú¾Ú±zªº¦øªA¾¹»¡©úÀÉ­×§ï ====================
-//	ª`·N¡G 	¦pªG¸ê®Æ®w³sµ²¦³°İÃD,½Ğ¤£­n¦V§Ú­Ì¸ß°İ¨ãÅé°Ñ¼Æ³]¸m,½Ğ»PªÅ¶¡°ÓÁpÃ´,
-//		¦]¬°§Ú­Ì¤]µLªk§i¶D±z³o¨ÇÅÜ¶qÀ³¸Ó³]¸m¬°¦ó­È
+// ==================== ä»¥ä¸‹è®Šé‡éœ€æ ¹æ“šæ‚¨çš„ä¼ºæœå™¨èªªæ˜æª”ä¿®æ”¹ ====================
+//        æ³¨æ„ï¼š         å¦‚æœè³‡æ–™åº«é€£çµæœ‰å•é¡Œ,è«‹ä¸è¦å‘æˆ‘å€‘è©¢å•å…·é«”åƒæ•¸è¨­ç½®,è«‹èˆ‡ç©ºé–“å•†è¯ç¹«,
+//                å› ç‚ºæˆ‘å€‘ä¹Ÿç„¡æ³•å‘Šè¨´æ‚¨é€™äº›è®Šé‡æ‡‰è©²è¨­ç½®ç‚ºä½•å€¼
 
-	$dbhost = 'localhost';			// ¼Æ¾Ú®wªA°È¾¹
-	$dbuser = 'dbuser';				// ¼Æ¾Ú®w¥Î¤á¦W
-	$dbpw = 'dbpw';				// ¼Æ¾Ú®w±K½X
-	$dbname = 'plus';			// ¼Æ¾Ú®w¦W
-	$adminemail = '';		// ½×¾Â¨t²Î Email
-
-// ============================================================================
-
-
-
-// =================================== ½×¾Â³]¸m =================================
-
-	$postnum ='10';				// ¤å³¹³Ì¤p¦r¤¸
-	$bankmanager ='lai107';			// »È¦æ¦æªø
-	$showdetails ="1";				// ¦b½u¦Cªí¶}/Ãö (0=Ãö¡A1=¶})
-	$reseller ='10';				// ±ÀÂË¤H¥i¥H¼W¥[ªº¿n¤À
-	$date ='08-Nov-2004';			// ¶}¾Â¤é´Á
-	$IP ='1';					// ¦P¤@IP¦b 24 ¤p®É¤ºµù¥U ID ªº¼Æ¶q
-	$karma_view = 1;				// ¹î¬İµû¤À°O¿ı¶}/Ãö  (0=Ãö¡A1=¶})
-	$karma_adminview = 1;			// ª©¥D¹î¬İµû¤À°O¿ı¶}/Ãö  (0=Ãö¡A1=¶})
-	$karma_perpage = 20;			// ¨C­¶Åã¥Ü¦h¤Ö­Óµû¤À¤Hªº°O¿ı
+        $dbhost = 'localhost';                        // æ•¸æ“šåº«æœå‹™å™¨
+        $dbuser = 'dbuser';                                // æ•¸æ“šåº«ç”¨æˆ¶å
+        $dbpw = 'dbpw';                                // æ•¸æ“šåº«å¯†ç¢¼
+        $dbname = 'plus';                        // æ•¸æ“šåº«å
+        $adminemail = '';                // è«–å£‡ç³»çµ± Email
 
 // ============================================================================
 
 
 
-// ============= ¦p±z¹ï cookie §@¥Î½d³ò¦³¯S®í­n¨D,½Ğ­×§ï¤U­±ÅÜ¶q ==============
+// =================================== è«–å£‡è¨­ç½® =================================
 
-	$cookiepath = '/';				// cookie §@¥Î¸ô®| (¦p¥X²{µn¤J°İÃD½Ğ­×§ï¦¹¶µ)
-	$cookiedomain = ''; 			// cookie §@¥Î°ì (¦p¥X²{µn¤J°İÃD½Ğ­×§ï¦¹¶µ)
-
-// ============================================================================
-
-
-
-// ============= Discuz! ¥~±¾¡A°t¸m©M¨Ï¥Î¤èªk¸Ô±¡½Ğ°Ñ¦Ò plugin.txt ============
-
-$plugins[] = array (	'name'   => '´¡¥ó¤¤¤ß',
-			'script' => '',
-			'url'    => '',
-			'cpurl'  => 'admincp.php?action=advcenter'	);
-
-$plugins[] = array (	'name'   => 'ºŞ²z¹Î¶¤',
-			'script' => '',
-			'url'    => 'disadmin.php',
-			'cpurl'  => ''	);
-
-$plugins[] = array (	'name'   => '½×¾Â»È¦æ',
-			'script' => '',
-			'url'    => 'bank.php',
-			'cpurl'  => 'admincp.php?action=advcenter&hackname=bank'	);
-
-$plugins[] = array (	'name'   => '§ï¦W¤¤¤ß',
-			'script' => '',
-			'url'    => 'chname.php',
-			'cpurl'  => 'admincp.php?action=advcenter&hackname=chname'	);
-
-$plugins[] = array (	'name'   => 'Áp·ù¥Ó½Ğ',
-			'script' => '',
-			'url'    => 'link.php',
-			'cpurl'  => 'admincp.php?action=advcenter&hackname=link'	);
-
-$plugins[] = array (	'name'   => '¼Æ¾Ú²M²z',
-			'script' => '',
-			'url'    => '',
-			'cpurl'  => 'admincp.php?action=advcenter&hackname=datasweep'	);
-
-$plugins[] = array (	'name'   => '¤Ïµs³s³]¸m',
-			'script' => '',
-			'url'    => '',
-			'cpurl'  => 'admincp.php?action=advcenter&hackname=antisteal'	);
+        $postnum = 10;                                // æ–‡ç« æœ€å°å­—å…ƒ
+        $bankmanager = 'admin';                        // éŠ€è¡Œè¡Œé•·
+        $showdetails = 1;                                // åœ¨ç·šåˆ—è¡¨é–‹/é—œ (0=é—œï¼Œ1=é–‹)
+        $reseller = 10;                                // æ¨è–¦äººå¯ä»¥å¢åŠ çš„ç©åˆ†
+        $date = '08-Nov-2004';                        // é–‹å£‡æ—¥æœŸ
+        $IP = 1;                                        // åŒä¸€IPåœ¨ 24 å°æ™‚å…§è¨»å†Š ID çš„æ•¸é‡
+        $karma_view = 1;                                // å¯Ÿçœ‹è©•åˆ†è¨˜éŒ„é–‹/é—œ  (0=é—œï¼Œ1=é–‹)
+        $karma_adminview = 1;                        // ç‰ˆä¸»å¯Ÿçœ‹è©•åˆ†è¨˜éŒ„é–‹/é—œ  (0=é—œï¼Œ1=é–‹)
+        $karma_perpage = 20;                        // æ¯é é¡¯ç¤ºå¤šå°‘å€‹è©•åˆ†äººçš„è¨˜éŒ„
 
 // ============================================================================
 
 
 
-// ================= ¥H¤UÅÜ¶q¬°¯S§O¿ï¶µ¡A¤@¯ë±¡ªp¤U¨S¦³¥²­n­×§ï ================
+// ============= å¦‚æ‚¨å° cookie ä½œç”¨ç¯„åœæœ‰ç‰¹æ®Šè¦æ±‚,è«‹ä¿®æ”¹ä¸‹é¢è®Šé‡ ==============
 
-	$headercharset = 0;				// ±j¨î³]¸m¦r¤¸¶°, 0=§_, 1=¬O. ¥u¶Ã½X®É¨Ï¥Î
-	$onlinehold = 600;				// ¦b½u«O«ù®É¶¡(¬í)
-
-
-	// ½×¾Â§ë¤J¨Ï¥Î«á¤£¯à­×§ïªºÅÜ¶q
-
-	$tablepre = 'cdb_';   				// ªí¦W«eºó, ¦P¤@¸ê®Æ®w¦w¸Ë¦h­Ó½×¾Â½Ğ­×§ï¦¹³B
-	$attachdir = './attachments';			// ªş¥ó«O¦s¦ì¸m (¦øªA¾¹¸ô®|, Äİ©Ê 777, ¥²¶·
-						// ¬° web ¥i³X°İ¨ìªº¥Ø¿ı¡A ¤£¥[ "/")
-	$attachurl = 'attachments';			// ªş¥ó¸ô®| URL ¦a§} (¥i¬°·í«e URL ¤Uªº¬Û¹ï¦a§}©Î http:// ¶}ÀYªºµ´¹ï¦a§}, ¤£¥[ "/")
-
-
-	// ¤Á¤Å­×§ï¥H¤UÅÜ¶q,¶È¨Ñµ{§Ç¶}µo½Õ¸Õ¥Î!
-
-	$database = 'mysql';			// MySQL ª©¥»½Ğ³]¸m 'mysql', PgSQL ª©¥»½Ğ³]¸m 'pgsql'
-	$tplrefresh = 1;				// ¼Òª©¦Û°Ê­«·s¾ã²z¶}Ãö 0=Ãö³¬¡A 1=¥´¶}
-	$pconnect = 0;				// ¼Æ¾Ú®w«ù¤[³s±µ 0=Ãö³¬¡A 1=¥´¶}
+        $cookiepath = '/';                                // cookie ä½œç”¨è·¯å¾‘ (å¦‚å‡ºç¾ç™»å…¥å•é¡Œè«‹ä¿®æ”¹æ­¤é …)
+        $cookiedomain = '';                         // cookie ä½œç”¨åŸŸ (å¦‚å‡ºç¾ç™»å…¥å•é¡Œè«‹ä¿®æ”¹æ­¤é …)
 
 // ============================================================================
 
 
 
-// =============================== ¶K¤l¶R½æ°t¸m ===============================
+// ============= Discuz! å¤–æ›ï¼Œé…ç½®å’Œä½¿ç”¨æ–¹æ³•è©³æƒ…è«‹åƒè€ƒ plugin.txt ============
+
+$plugins[] = array (        'name'   => 'æ’ä»¶ä¸­å¿ƒ',
+                        'script' => '',
+                        'url'    => '',
+                        'cpurl'  => 'admincp.php?action=advcenter'        );
+
+$plugins[] = array (        'name'   => 'ç®¡ç†åœ˜éšŠ',
+                        'script' => '',
+                        'url'    => 'disadmin.php',
+                        'cpurl'  => ''        );
+
+$plugins[] = array (        'name'   => 'è«–å£‡éŠ€è¡Œ',
+                        'script' => '',
+                        'url'    => 'bank.php',
+                        'cpurl'  => 'admincp.php?action=advcenter&hackname=bank'        );
+
+$plugins[] = array (        'name'   => 'æ”¹åä¸­å¿ƒ',
+                        'script' => '',
+                        'url'    => 'chname.php',
+                        'cpurl'  => 'admincp.php?action=advcenter&hackname=chname'        );
+
+$plugins[] = array (        'name'   => 'è¯ç›Ÿç”³è«‹',
+                        'script' => '',
+                        'url'    => 'link.php',
+                        'cpurl'  => 'admincp.php?action=advcenter&hackname=link'        );
+
+$plugins[] = array (        'name'   => 'æ•¸æ“šæ¸…ç†',
+                        'script' => '',
+                        'url'    => '',
+                        'cpurl'  => 'admincp.php?action=advcenter&hackname=datasweep'        );
+
+$plugins[] = array (        'name'   => 'åç›œé€£è¨­ç½®',
+                        'script' => '',
+                        'url'    => '',
+                        'cpurl'  => 'admincp.php?action=advcenter&hackname=antisteal'        );
+
+// ============================================================================
+
+
+
+// ================= ä»¥ä¸‹è®Šé‡ç‚ºç‰¹åˆ¥é¸é …ï¼Œä¸€èˆ¬æƒ…æ³ä¸‹æ²’æœ‰å¿…è¦ä¿®æ”¹ ================
+
+        $headercharset = 0;                                // å¼·åˆ¶è¨­ç½®å­—å…ƒé›†, 0=å¦, 1=æ˜¯. åªäº‚ç¢¼æ™‚ä½¿ç”¨
+        $onlinehold = 600;                                // åœ¨ç·šä¿æŒæ™‚é–“(ç§’)
+
+
+        // è«–å£‡æŠ•å…¥ä½¿ç”¨å¾Œä¸èƒ½ä¿®æ”¹çš„è®Šé‡
+
+        $tablepre = 'cdb_';                                   // è¡¨åå‰ç¶´, åŒä¸€è³‡æ–™åº«å®‰è£å¤šå€‹è«–å£‡è«‹ä¿®æ”¹æ­¤è™•
+        $attachdir = './attachments';                        // é™„ä»¶ä¿å­˜ä½ç½® (ä¼ºæœå™¨è·¯å¾‘, å±¬æ€§ 777, å¿…é ˆ
+                                                // ç‚º web å¯è¨ªå•åˆ°çš„ç›®éŒ„ï¼Œ ä¸åŠ  "/")
+        $attachurl = 'attachments';                        // é™„ä»¶è·¯å¾‘ URL åœ°å€ (å¯ç‚ºç•¶å‰ URL ä¸‹çš„ç›¸å°åœ°å€æˆ– http:// é–‹é ­çš„çµ•å°åœ°å€, ä¸åŠ  "/")
+
+
+        // åˆ‡å‹¿ä¿®æ”¹ä»¥ä¸‹è®Šé‡,åƒ…ä¾›ç¨‹åºé–‹ç™¼èª¿è©¦ç”¨!
+
+        $database = 'mysql';                        // MySQL ç‰ˆæœ¬è«‹è¨­ç½® 'mysql', PgSQL ç‰ˆæœ¬è«‹è¨­ç½® 'pgsql'
+        $tplrefresh = 1;                                // æ¨¡ç‰ˆè‡ªå‹•é‡æ–°æ•´ç†é–‹é—œ 0=é—œé–‰ï¼Œ 1=æ‰“é–‹
+        $pconnect = 0;                                // æ•¸æ“šåº«æŒä¹…é€£æ¥ 0=é—œé–‰ï¼Œ 1=æ‰“é–‹
+
+// ============================================================================
+
+
+
+// =============================== è²¼å­è²·è³£é…ç½® ===============================
 
 $hacktable_postpay = 'cdb_postpay';
-$allowpostpay =1;
-$cnteacher_postsell_maxprice =10000;
-$cnteacher_paylist_perpage =20;
+$allowpostpay = 1;
+$cnteacher_postsell_maxprice = 10000;
+$cnteacher_paylist_perpage = 20;
 
 // ============================================================================
 
 
 
-// =============================== §ï¦W¤¤¤ß°t¸m ===============================
+// =============================== æ”¹åä¸­å¿ƒé…ç½® ===============================
 
-$table_chname='cdb_chname';
+$table_chname = 'cdb_chname';
 
 // ============================================================================
