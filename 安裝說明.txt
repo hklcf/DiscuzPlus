@@ -1,7 +1,7 @@
 Discuz! Plus 1.1.4
 程序製作：HKLCF
-電子信箱：[email]admin@hklcf.com[/email]
-測試網站：[url]http://discuz.hklcf.com[/url]
+電子信箱：admin@hklcf.com
+測試網站：http://discuz.hklcf.com
 
 
 全新安裝的方法: (以下每一步都非常關鍵,請仔細閱讀)
