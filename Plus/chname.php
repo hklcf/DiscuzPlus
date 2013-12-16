@@ -1,16 +1,16 @@
 <?
 
 /*
-	Version: 1.1.2(BUG Fixed)
-	Author: HKLCF (admin@hklcf.com)
-	Copyright: HKLCF (www.hklcf.com)
-	Last Modified: 2004/11/08
+        Version: 1.1.2(BUG Fixed)
+        Author: HKLCF (admin@hklcf.com)
+        Copyright: HKLCF (www.hklcf.com)
+        Last Modified: 2004/11/08
 */
 
 require './include/common.php';
 require_once './advcenter/chname_config.php';
 
-$navtitle = ' - §ï¦W¤¤¤ß';
+$navtitle = ' - æ”¹åä¸­å¿ƒ';
 $discuz_action = 182;
 
 $chmoney = $chname[chmoney];
@@ -20,49 +20,49 @@ $chul = $chname[chul];
 $chdl = $chname[chdl];
 $chreason = $chname[chreason];
 
-$date=date('m¤ëd¤é H:i:s',$timestamp);
-$text = "§ï¦W·|­û¸ê®Æ¡G\n\nÂÂ·|­û¦WºÙ¡G[color=blue] $discuz_user [/color]\n\n·s·|­û¦WºÙ¡G[color=green][b] $newname [/b][/color]\n\n§ï¦W­ì¦]¡G[color=darkblue] $reason [/color]\n\n§ï¦W®É¶¡: $date \n\n[color=red]**§ï¦W«á¦p¦³¦]¦ó°İÃD¡A½ĞPMºŞ²z­û**[/color]";
-$subject="·|­û§ï¦W³qª¾";
+$date=date('mæœˆdæ—¥ H:i:s',$timestamp);
+$text = "æ”¹åæœƒå“¡è³‡æ–™ï¼š\n\nèˆŠæœƒå“¡åç¨±ï¼š[color=blue] $discuz_user [/color]\n\næ–°æœƒå“¡åç¨±ï¼š[color=green][b] $newname [/b][/color]\n\næ”¹ååŸå› ï¼š[color=darkblue] $reason [/color]\n\næ”¹åæ™‚é–“: $date \n\n[color=red]**æ”¹åå¾Œå¦‚æœ‰å› ä½•å•é¡Œï¼Œè«‹PMç®¡ç†å“¡**[/color]";
+$subject="æœƒå“¡æ”¹åé€šçŸ¥";
 
 if(!$discuz_user) {
-	showmessage('not_loggedin');
+        showmessage('not_loggedin');
 }
 
 if($chname[chcheck]==1){
-        showmessage("¹ï¤£°_¡A·|­û§ï¦W¤¤¤ß²{¥¿Ãö³¬¤¤¡I",'index.php');
+        showmessage("å°ä¸èµ·ï¼Œæœƒå“¡æ”¹åä¸­å¿ƒç¾æ­£é—œé–‰ä¸­ï¼",'index.php');
 }
 
 $query = $db->query("SELECT COUNT(*) FROM $table_members WHERE username='$newname'");
 
 if ($action=="changename") {
-if ($credit<$chcredit) {showmessage("§Aªº¿n¤À¤£¯à¹F¨ì§ï¦W±ø¥ó¡C",'index.php');
-	} else if($usermoney<$chmoney) {showmessage("§Aªºª÷¿ú¤£¨¬¡AµLªk¶i¦æ§ï¦W¡C",'index.php');
-	} else if($credit<$chcredit) {showmessage("§Aªº¿n¤À¥¼¹F¨ì­n¨D¡AµLªk¶i¦æ§ï¦W¡C",'index.php');
-	} else if($db->result($query, 0)) {showmessage("<font color=red><b> $newname </b></font>¤w¸g¦s¦b¡A¦WºÙµLªk§ó§ï¡C",'index.php');
-	} else if(!$newname) {showmessage("½Ğ¶ñ¼g­n¨D§ó§ï¤§·|­û¦WºÙ¡Aªğ¦^­«·s¶ñ¼g¡C",'chname.php');
-	} else if(strlen($newname) > $chul || strlen($newname) < $chdl) {showmessage("§Aªº¦WºÙ¤j©ó $chul ©Î ¤p©ó $chdl µLªk§ï¦W,½Ğªğ¦^§ó§ï",'chname.php');
-	} else if(strlen($reason) < $chreason) {showmessage("§Aªº§ï¦W­ì¦]¤Óµu¤F¡A½Ğªğ¦^§ó§ï",'chname.php');
-	} else if(!$reason) {showmessage("½Ğ¶ñ¼g§ó§ï·|­û¦WºÙ­ì¦]¡Aªğ¦^­«·s¶ñ¼g¡C",'chname.php');
+if ($credit<$chcredit) {showmessage("ä½ çš„ç©åˆ†ä¸èƒ½é”åˆ°æ”¹åæ¢ä»¶ã€‚",'index.php');
+        } else if($usermoney<$chmoney) {showmessage("ä½ çš„é‡‘éŒ¢ä¸è¶³ï¼Œç„¡æ³•é€²è¡Œæ”¹åã€‚",'index.php');
+        } else if($credit<$chcredit) {showmessage("ä½ çš„ç©åˆ†æœªé”åˆ°è¦æ±‚ï¼Œç„¡æ³•é€²è¡Œæ”¹åã€‚",'index.php');
+        } else if($db->result($query, 0)) {showmessage("<font color=red><b> $newname </b></font>å·²ç¶“å­˜åœ¨ï¼Œåç¨±ç„¡æ³•æ›´æ”¹ã€‚",'index.php');
+        } else if(!$newname) {showmessage("è«‹å¡«å¯«è¦æ±‚æ›´æ”¹ä¹‹æœƒå“¡åç¨±ï¼Œè¿”å›é‡æ–°å¡«å¯«ã€‚",'chname.php');
+        } else if(strlen($newname) > $chul || strlen($newname) < $chdl) {showmessage("ä½ çš„åç¨±å¤§æ–¼ $chul æˆ– å°æ–¼ $chdl ç„¡æ³•æ”¹å,è«‹è¿”å›æ›´æ”¹",'chname.php');
+        } else if(strlen($reason) < $chreason) {showmessage("ä½ çš„æ”¹ååŸå› å¤ªçŸ­äº†ï¼Œè«‹è¿”å›æ›´æ”¹",'chname.php');
+        } else if(!$reason) {showmessage("è«‹å¡«å¯«æ›´æ”¹æœƒå“¡åç¨±åŸå› ï¼Œè¿”å›é‡æ–°å¡«å¯«ã€‚",'chname.php');
         } else {
-	$query = $db->query("UPDATE $table_members SET money=money-$chmoney WHERE username='$discuz_user'");
-	$query = $db->query("UPDATE $table_buddys SET username='$newname' WHERE username='$discuz_user'");
-	$query = $db->query("UPDATE $table_buddys SET buddyname='$newname' WHERE buddyname='$discuz_user'");
-	$query = $db->query("UPDATE $table_favorites SET username='$newname' WHERE username='$discuz_user'");
-	$query = $db->query("UPDATE $table_subscriptions SET username='$newname' WHERE username='$discuz_user'");
-	$query = $db->query("UPDATE $table_members SET username='$newname' WHERE username='$discuz_user'");
-	$query = $db->query("UPDATE $table_posts SET author='$newname' WHERE author='$discuz_user'");
-	$query = $db->query("UPDATE $table_threads SET author='$newname' WHERE author='$discuz_user'");
-	$query = $db->query("UPDATE $table_threads SET lastposter='$newname' WHERE lastposter='$discuz_user'");
-	$query = $db->query("UPDATE $table_forums SET lastpost=REPLACE(lastpost, '\t$discuz_user', '\t$discuz_user')");
-	$query = $db->query("UPDATE $table_pm SET msgfrom='$newname' WHERE msgfrom='$discuz_user'");
-	$query = $db->query("UPDATE $table_pm SET msgto='$newname' WHERE msgto='$discuz_user'");
-	$query = $db->query("UPDATE $table_members SET newpm='1' WHERE username='$discuz_user'");
-	$query = $db->query("INSERT INTO $table_pm VALUES('$chadmin', '$chadmin', '$discuz_userss', 'inbox', '1', '$subject', '$timestamp', '$text')");
-	$query = $db->query("INSERT INTO $table_pm VALUES('$newname', '$newname', '$newname', 'inbox', '1', '$subject', '$timestamp', '$text')");
-	$query = $db->query("INSERT INTO $table_chname ( `id` , `newname` , `oldname` , `reason` , `dateline` ) VALUES ('', '$newname', '$discuz_user', '$reason', '$timestamp')");
-	showmessage("§ï¦W¦¨¥\¡A§Aªº¦WºÙ§ï¬° $newname ¡I<br>¦p±zªº±b¸¹¥X²{¥ô¦ó°İÃD¡A½Ğ§YÁpµ¸ºŞ²z­û",'index.php');
-			}
-		}
+        $query = $db->query("UPDATE $table_members SET money=money-$chmoney WHERE username='$discuz_user'");
+        $query = $db->query("UPDATE $table_buddys SET username='$newname' WHERE username='$discuz_user'");
+        $query = $db->query("UPDATE $table_buddys SET buddyname='$newname' WHERE buddyname='$discuz_user'");
+        $query = $db->query("UPDATE $table_favorites SET username='$newname' WHERE username='$discuz_user'");
+        $query = $db->query("UPDATE $table_subscriptions SET username='$newname' WHERE username='$discuz_user'");
+        $query = $db->query("UPDATE $table_members SET username='$newname' WHERE username='$discuz_user'");
+        $query = $db->query("UPDATE $table_posts SET author='$newname' WHERE author='$discuz_user'");
+        $query = $db->query("UPDATE $table_threads SET author='$newname' WHERE author='$discuz_user'");
+        $query = $db->query("UPDATE $table_threads SET lastposter='$newname' WHERE lastposter='$discuz_user'");
+        $query = $db->query("UPDATE $table_forums SET lastpost=REPLACE(lastpost, '\t$discuz_user', '\t$discuz_user')");
+        $query = $db->query("UPDATE $table_pm SET msgfrom='$newname' WHERE msgfrom='$discuz_user'");
+        $query = $db->query("UPDATE $table_pm SET msgto='$newname' WHERE msgto='$discuz_user'");
+        $query = $db->query("UPDATE $table_members SET newpm='1' WHERE username='$discuz_user'");
+        $query = $db->query("INSERT INTO $table_pm VALUES('$chadmin', '$chadmin', '$discuz_userss', 'inbox', '1', '$subject', '$timestamp', '$text')");
+        $query = $db->query("INSERT INTO $table_pm VALUES('$newname', '$newname', '$newname', 'inbox', '1', '$subject', '$timestamp', '$text')");
+        $query = $db->query("INSERT INTO $table_chname ( `id` , `newname` , `oldname` , `reason` , `dateline` ) VALUES ('', '$newname', '$discuz_user', '$reason', '$timestamp')");
+        showmessage("æ”¹åæˆåŠŸï¼Œä½ çš„åç¨±æ”¹ç‚º $newname ï¼<br>å¦‚æ‚¨çš„å¸³è™Ÿå‡ºç¾ä»»ä½•å•é¡Œï¼Œè«‹å³è¯çµ¡ç®¡ç†å“¡",'index.php');
+                        }
+                }
 
 if ($action=="list") {
 
@@ -74,13 +74,13 @@ $start_limit = 0;
 $page = 1;
 }
 $query = $db->query("SELECT COUNT(*) FROM $tablepre"."chname");
-	$multipage = multi($db->result($query, 0), $num, $page, "chname.php?action=list");
-	$query = $db->query("SELECT * FROM $tablepre"."chname ORDER BY id desc  LIMIT $start_limit,$num");
+        $multipage = multi($db->result($query, 0), $num, $page, "chname.php?action=list");
+        $query = $db->query("SELECT * FROM $tablepre"."chname ORDER BY id desc  LIMIT $start_limit,$num");
 
-	while ($member = $db->fetch_array($query)) {
-		$member['usernameenc'] = rawurlencode($member['username']);
-		$member['dateline'] = gmdate("$dateformat $timeformat", $member['dateline'] + $timeoffset * 3600);
-	$chnamelist[] = $member;
+        while ($member = $db->fetch_array($query)) {
+                $member['usernameenc'] = rawurlencode($member['username']);
+                $member['dateline'] = gmdate("$dateformat $timeformat", $member['dateline'] + $timeoffset * 3600);
+        $chnamelist[] = $member;
 }
 
 }
